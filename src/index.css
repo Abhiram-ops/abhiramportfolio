@@ -2,41 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Cybersecurity Terminal Theme Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Terminal Dark Theme */
+    --background: 0 0% 3%;
+    --foreground: 120 100% 70%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 6%;
+    --card-foreground: 120 100% 70%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 120 100% 70%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Bright terminal green */
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 3%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Darker green variant */
+    --secondary: 120 100% 15%;
+    --secondary-foreground: 120 100% 70%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted terminal colors */
+    --muted: 120 20% 10%;
+    --muted-foreground: 120 30% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent bright green */
+    --accent: 120 100% 60%;
+    --accent-foreground: 0 0% 3%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Terminal borders */
+    --border: 120 50% 20%;
+    --input: 120 50% 15%;
+    --ring: 120 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+
+    /* Custom terminal colors */
+    --terminal-green: 120 100% 50%;
+    --terminal-green-dark: 120 100% 25%;
+    --terminal-green-bright: 120 100% 70%;
+    --terminal-bg: 0 0% 3%;
+    --terminal-bg-light: 0 0% 6%;
+    
+    /* Matrix effect */
+    --matrix-green: 120 100% 50%;
+    --matrix-green-fade: 120 100% 25%;
+    
+    /* Glitch effects */
+    --glitch-primary: 120 100% 50%;
+    --glitch-secondary: 60 100% 50%;
+    --glitch-tertiary: 300 100% 50%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +76,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
+    /* Same as root since we're using terminal theme */
+    --background: 0 0% 3%;
+    --foreground: 120 100% 70%;
+    --card: 0 0% 6%;
+    --card-foreground: 120 100% 70%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 120 100% 70%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 3%;
+    --secondary: 120 100% 15%;
+    --secondary-foreground: 120 100% 70%;
+    --muted: 120 20% 10%;
+    --muted-foreground: 120 30% 40%;
+    --accent: 120 100% 60%;
+    --accent-foreground: 0 0% 3%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 120 50% 20%;
+    --input: 120 50% 15%;
+    --ring: 120 100% 50%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 120 100% 70%;
+    --sidebar-primary: 120 100% 50%;
+    --sidebar-primary-foreground: 0 0% 3%;
+    --sidebar-accent: 120 50% 15%;
+    --sidebar-accent-foreground: 120 100% 70%;
+    --sidebar-border: 120 50% 20%;
+    --sidebar-ring: 120 100% 50%;
   }
 }
 
@@ -100,6 +113,116 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono overflow-x-hidden;
   }
+}
+
+/* Terminal-specific animations and effects */
+@layer utilities {
+  .matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .terminal-window {
+    border: 1px solid hsl(var(--terminal-green));
+    background: hsl(var(--terminal-bg-light));
+    border-radius: var(--radius);
+    box-shadow: 0 0 20px hsl(var(--terminal-green) / 0.3);
+  }
+
+  .terminal-title-bar {
+    background: linear-gradient(90deg, hsl(var(--terminal-green-dark)), hsl(var(--terminal-green)));
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .terminal-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+  }
+
+  .terminal-dot.red {
+    background: #ff5f56;
+  }
+
+  .terminal-dot.yellow {
+    background: #ffbd2e;
+  }
+
+  .terminal-dot.green {
+    background: #27ca3f;
+  }
+
+  .glitch-text {
+    position: relative;
+    animation: glitch 2s infinite;
+  }
+
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--terminal-green));
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  .terminal-glow {
+    box-shadow: 0 0 10px hsl(var(--terminal-green) / 0.5);
+    border: 1px solid hsl(var(--terminal-green) / 0.3);
+  }
+
+  .skill-tag {
+    background: hsl(var(--terminal-bg-light));
+    border: 1px solid hsl(var(--terminal-green));
+    color: hsl(var(--terminal-green));
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    background: hsl(var(--terminal-green) / 0.1);
+    box-shadow: 0 0 5px hsl(var(--terminal-green) / 0.5);
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--terminal-green)); }
+}
+
+@keyframes matrix-fall {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
 }
