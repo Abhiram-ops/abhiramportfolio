@@ -211,7 +211,7 @@ const Index = () => {
                 WHY CHOOSE ME?
               </h3>
               
-              <div className="grid md:grid-cols-3 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="p-4 border border-terminal-green/30 rounded">
                   <h4 className="font-bold text-terminal-green-bright mb-2">SECURITY FIRST</h4>
                   <p className="text-sm text-terminal-green/80">
@@ -223,13 +223,6 @@ const Index = () => {
                   <h4 className="font-bold text-terminal-green-bright mb-2">PROVEN RESULTS</h4>
                   <p className="text-sm text-terminal-green/80">
                     35% conversion rates, leadership roles, and recognition across cybersecurity & business domains
-                  </p>
-                </div>
-                
-                <div className="p-4 border border-terminal-green/30 rounded">
-                  <h4 className="font-bold text-terminal-green-bright mb-2">FULL STACK</h4>
-                  <p className="text-sm text-terminal-green/80">
-                    From frontend development to backend security - complete technical versatility
                   </p>
                 </div>
               </div>
