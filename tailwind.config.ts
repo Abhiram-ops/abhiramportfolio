@@ -72,6 +72,7 @@ export default {
 			},
 			fontFamily: {
 				mono: ['JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'monospace'],
+				sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

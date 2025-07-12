@@ -76,7 +76,7 @@ const Index = () => {
       <MatrixBackground />
       
       {/* Kali Linux Logo Background */}
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 z-0">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20 z-0">
         <img src={kaliLogo} alt="Kali Linux" className="w-96 h-96" />
       </div>
       
@@ -114,14 +114,10 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Button variant="terminal" size="lg" className="animate-terminal-glow">
               <Github className="w-5 h-5" />
               GITHUB ACCESS
-            </Button>
-            <Button variant="outline" size="lg" onClick={handleDownloadResume}>
-              <Download className="w-5 h-5" />
-              DOWNLOAD RESUME
             </Button>
           </div>
         </div>
@@ -215,8 +211,8 @@ const Index = () => {
                 <Code className="w-8 h-8 text-terminal-green-bright" />
               </div>
               
-              <h3 className="text-2xl font-bold text-terminal-green-bright mb-4">
-                WHY CHOOSE ABHIRAM?
+              <h3 className="text-2xl font-bold text-terminal-green-bright mb-4 font-sans">
+                WHY CHOOSE ME?
               </h3>
               
               <div className="grid md:grid-cols-3 gap-6 mb-6">
