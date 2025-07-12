@@ -62,13 +62,9 @@ const Index = () => {
   ];
 
   const handleDownloadResume = () => {
-    // Create a temporary link to download the PDF resume
-    const link = document.createElement('a');
-    link.href = '/Abhiram_Lanka_Resume_Polished.pdf';
-    link.download = 'Abhiram_Lanka_Resume_Polished.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Direct download link from Google Drive
+    const downloadUrl = 'https://drive.google.com/uc?export=download&id=1-C3LB0xbaFQYC0yxsQj-1s_fOldE74Z0';
+    window.open(downloadUrl, '_blank');
   };
 
   return (
