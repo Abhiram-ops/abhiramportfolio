@@ -62,10 +62,10 @@ const Index = () => {
   ];
 
   const handleDownloadResume = () => {
-    // Create a temporary link to download a PDF resume
+    // Create a temporary link to download the PDF resume
     const link = document.createElement('a');
-    link.href = '/resume-abhiram-lanka.pdf'; // You would need to add this file to public folder
-    link.download = 'Abhiram_Lanka_Resume.pdf';
+    link.href = '/Abhiram_Lanka_Resume_Polished.pdf';
+    link.download = 'Abhiram_Lanka_Resume_Polished.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
