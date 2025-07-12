@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
-import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award } from "lucide-react";
+import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award, Shield, Code, Brain } from "lucide-react";
+import kaliLogo from "@/assets/kali-logo.png";
 
 const Index = () => {
   const [typedText, setTypedText] = useState("");
@@ -23,74 +24,61 @@ const Index = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const programmingSkills = ["Python", "Java", "SQL", "JavaScript", "HTML/CSS"];
-  const cybersecuritySkills = ["Vulnerability Assessment", "Network Security", "OWASP", "Kali Linux", "Wireshark", "Bash Scripting"];
-  const databaseSkills = ["MySQL", "SQLite", "PostgreSQL", "MongoDB"];
-  const testingSkills = ["Unit Testing", "Test Case Design", "Bug Reporting", "Automation Concepts"];
-  const businessSkills = ["Client Acquisition", "Market Research", "Lead Generation", "Pitching"];
-  const toolsSkills = ["Git", "Jupyter", "VS Code", "Excel"];
+  const keySkills = ["Python", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux"];
+  const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "Git"];
 
   const experiences = [
     {
       company: "Caarya",
       position: "Business Development Associate",
       period: "Feb 2025 - Present",
-      achievements: [
-        "Prospected startups and students for internships; achieved a 35% conversion rate",
-        "Designed and led pitch campaigns, resulting in a 50% increase in startup onboarding"
-      ]
+      highlight: "35% conversion rate in startup prospecting"
     },
     {
-      company: "IIT Bhubaneswar",
+      company: "IIT Bhubaneswar", 
       position: "Software Testing Intern",
       period: "May 2024 - July 2024",
-      achievements: [
-        "Evaluated and validated academic software systems for bugs and performance",
-        "Designed test cases, reported critical issues, and supported test automation documentation"
-      ]
+      highlight: "Validated academic software systems"
     },
     {
       company: "Techno Hacks",
-      position: "Cybersecurity Intern",
+      position: "Cybersecurity Intern", 
       period: "July 2024 - Aug 2024",
-      achievements: [
-        "Task 1: Performed sniffing attacks using Wireshark",
-        "Task 2: Conducted network scanning with Nmap",
-        "Task 3: Executed information gathering using Maltego"
-      ]
+      highlight: "Advanced penetration testing & network analysis"
     }
   ];
 
-  const projects = [
+  const featuredProjects = [
     {
-      title: "E-Attendance using QR & OTP",
-      description: "Built a secure attendance system using Flask, MySQL, and HTML/CSS with QR and OTP verification. Implemented session handling and reduced proxy attendance and manual tracking errors.",
-      technologies: ["Flask", "MySQL", "HTML/CSS", "QR Codes", "OTP"]
+      title: "Web Vulnerability Scanner",
+      description: "Advanced OWASP Top 10 detection tool with automated reporting",
+      impact: "Security Testing"
     },
     {
-      title: "LeadFinder - Smart Lead Scraping Tool",
-      description: "Developed an automated lead generation tool using Python, BeautifulSoup, SerpAPI, and Regex. Extracted job metadata, contact info, and packaged it into a .exe with PyInstaller & Inno Setup.",
-      technologies: ["Python", "BeautifulSoup", "SerpAPI", "PyInstaller", "Regex"]
-    },
-    {
-      title: "Web Application Vulnerability Scanner",
-      description: "Created a console-based tool to detect SQLi, XSS, and CSRF using Python, Requests, and BeautifulSoup. Conducted OWASP Top 10 checks and generated reports for vulnerability patching.",
-      technologies: ["Python", "Requests", "BeautifulSoup", "OWASP", "Security Testing"]
+      title: "LeadFinder Tool",
+      description: "Automated lead generation with advanced scraping techniques", 
+      impact: "35% efficiency boost"
     }
   ];
 
-  const achievements = [
-    "Internshala Student Partner certification",
-    "2nd Prize in School-Level Science Exhibition",
-    "Conducted college hackathons as an event organizer",
-    "Served as Cybersecurity Chapter Lead, codeIAM Club",
-    "Led student summit collaboration with Caarya",
-    "Regular participant in coding contests and tech events"
-  ];
+  const handleDownloadResume = () => {
+    // Create a temporary link to download a PDF resume
+    const link = document.createElement('a');
+    link.href = '/resume-abhiram-lanka.pdf'; // You would need to add this file to public folder
+    link.download = 'Abhiram_Lanka_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="min-h-screen bg-terminal-bg text-terminal-green relative">
       <MatrixBackground />
+      
+      {/* Kali Linux Logo Background */}
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 z-0">
+        <img src={kaliLogo} alt="Kali Linux" className="w-96 h-96" />
+      </div>
       
       {/* Hero Section */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
@@ -104,10 +92,10 @@ const Index = () => {
               TECH-SAVVY COMPUTER SCIENCE STUDENT
             </h2>
             <p className="text-sm md:text-base text-terminal-green/80 mb-2">
-              Specialized in <span className="text-terminal-green-bright">CYBERSECURITY</span>, <span className="text-terminal-green-bright">SOFTWARE DEVELOPMENT</span>, and <span className="text-terminal-green-bright">BUSINESS STRATEGY</span>
+              Specialized in <span className="text-terminal-green-bright">CYBERSECURITY</span> & <span className="text-terminal-green-bright">PENETRATION TESTING</span>
             </p>
             <p className="text-sm md:text-base text-terminal-green/80 mb-8">
-              Advanced problem-solving through innovative tech solutions and cutting-edge security protocols.
+              Ethical hacker | Security researcher | Code architect
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -131,7 +119,7 @@ const Index = () => {
               <Github className="w-5 h-5" />
               GITHUB ACCESS
             </Button>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={handleDownloadResume}>
               <Download className="w-5 h-5" />
               DOWNLOAD RESUME
             </Button>
@@ -139,163 +127,143 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Skills Section */}
+      {/* Core Skills */}
       <div className="relative z-10 px-4 py-20">
         <div className="max-w-6xl mx-auto">
-          <TerminalWindow title="TECHNICAL_SKILLS.EXE" className="mb-12">
-            <div className="space-y-8">
+          <TerminalWindow title="CORE_EXPERTISE.SYS" className="mb-12">
+            <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright">[PROGRAMMING_&_TECH]</h3>
+                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
+                  <Shield className="w-5 h-5" />
+                  [SECURITY_ARSENAL]
+                </h3>
                 <div className="flex flex-wrap gap-2">
-                  {programmingSkills.map((skill) => (
+                  {keySkills.map((skill) => (
                     <SkillTag key={skill} skill={skill} />
                   ))}
                 </div>
               </div>
               
               <div>
-                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright">[CYBERSECURITY]</h3>
+                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
+                  <Code className="w-5 h-5" />
+                  [HACKING_TOOLS]
+                </h3>
                 <div className="flex flex-wrap gap-2">
-                  {cybersecuritySkills.map((skill) => (
-                    <SkillTag key={skill} skill={skill} />
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright">[DATABASES_&_TOOLS]</h3>
-                <div className="flex flex-wrap gap-2">
-                  {[...databaseSkills, ...toolsSkills].map((skill) => (
-                    <SkillTag key={skill} skill={skill} />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright">[SOFTWARE_TESTING]</h3>
-                <div className="flex flex-wrap gap-2">
-                  {testingSkills.map((skill) => (
-                    <SkillTag key={skill} skill={skill} />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-terminal-green-bright">[BUSINESS_&_STRATEGY]</h3>
-                <div className="flex flex-wrap gap-2">
-                  {businessSkills.map((skill) => (
-                    <SkillTag key={skill} skill={skill} />
+                  {tools.map((tool) => (
+                    <SkillTag key={tool} skill={tool} />
                   ))}
                 </div>
               </div>
             </div>
+            
+            <div className="mt-8 p-4 border border-terminal-green/30 rounded bg-terminal-bg/50">
+              <p className="text-sm text-terminal-green/80 italic">
+                "Specialized in offensive security, vulnerability research, and secure code development. 
+                Multiple internships in cybersecurity and software testing."
+              </p>
+            </div>
           </TerminalWindow>
 
-          {/* Experience Section */}
-          <TerminalWindow title="WORK_EXPERIENCE.LOG" className="mb-12">
-            <div className="space-y-6">
+          {/* Experience Preview */}
+          <TerminalWindow title="RECENT_MISSIONS.LOG" className="mb-12">
+            <div className="space-y-4">
               {experiences.map((exp, index) => (
-                <div key={index} className="border-l-2 border-terminal-green pl-4">
-                  <div className="flex items-start gap-4 mb-2">
-                    <Building className="w-5 h-5 mt-1 text-terminal-green-bright" />
-                    <div>
-                      <h3 className="text-lg font-bold text-terminal-green-bright">{exp.company}</h3>
-                      <p className="text-terminal-green">{exp.position}</p>
-                      <div className="flex items-center gap-2 text-sm text-terminal-green/80 mb-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{exp.period}</span>
-                      </div>
-                    </div>
+                <div key={index} className="flex items-center justify-between p-3 border border-terminal-green/20 rounded">
+                  <div>
+                    <h3 className="font-bold text-terminal-green-bright">{exp.company}</h3>
+                    <p className="text-sm text-terminal-green/80">{exp.position}</p>
                   </div>
-                  <ul className="space-y-1 ml-9">
-                    {exp.achievements.map((achievement, idx) => (
-                      <li key={idx} className="text-sm text-terminal-green/90">
-                        - {achievement}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="text-right">
+                    <p className="text-xs text-terminal-green/60">{exp.period}</p>
+                    <p className="text-sm text-terminal-green">{exp.highlight}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </TerminalWindow>
-
-          {/* Education Section */}
-          <TerminalWindow title="EDUCATION.DB" className="mb-12">
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <GraduationCap className="w-5 h-5 mt-1 text-terminal-green-bright" />
-                <div>
-                  <h3 className="text-lg font-bold text-terminal-green-bright">Bachelor of Technology in Computer Science Engineering</h3>
-                  <p className="text-terminal-green">Andhra University</p>
-                  <div className="flex items-center gap-2 text-sm text-terminal-green/80">
-                    <Calendar className="w-4 h-4" />
-                    <span>2022 - 2026</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <GraduationCap className="w-5 h-5 mt-1 text-terminal-green-bright" />
-                <div>
-                  <h3 className="text-lg font-bold text-terminal-green-bright">Higher Secondary School</h3>
-                  <p className="text-terminal-green">St. Xavier International School</p>
-                  <div className="flex items-center gap-2 text-sm text-terminal-green/80">
-                    <Calendar className="w-4 h-4" />
-                    <span>2020 - 2022</span>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-4 text-center">
+              <p className="text-sm text-terminal-green/60">+ Detailed achievements & impact metrics in resume</p>
             </div>
           </TerminalWindow>
 
-          {/* Projects Section */}
-          <TerminalWindow title="PROJECT_FILES.DIR" className="mb-12">
-            <div className="space-y-6">
-              {projects.map((project, index) => (
+          {/* Featured Projects */}
+          <TerminalWindow title="FEATURED_EXPLOITS.DIR" className="mb-12">
+            <div className="space-y-4">
+              {featuredProjects.map((project, index) => (
                 <div key={index} className="border border-terminal-green/30 p-4 rounded">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="text-lg font-bold text-terminal-green-bright">{project.title}</h3>
-                    <ExternalLink className="w-5 h-5 text-terminal-green hover:text-terminal-green-bright cursor-pointer" />
+                    <span className="text-xs text-terminal-green/60 bg-terminal-bg-light px-2 py-1 rounded">
+                      {project.impact}
+                    </span>
                   </div>
-                  <p className="text-sm text-terminal-green/90 mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <SkillTag key={tech} skill={tech} />
-                    ))}
-                  </div>
+                  <p className="text-sm text-terminal-green/90">{project.description}</p>
                 </div>
               ))}
             </div>
-          </TerminalWindow>
-
-          {/* Achievements Section */}
-          <TerminalWindow title="ACHIEVEMENTS.TXT" className="mb-12">
-            <div className="space-y-3">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <Award className="w-4 h-4 mt-1 text-terminal-green-bright" />
-                  <span className="text-sm text-terminal-green/90">{achievement}</span>
-                </div>
-              ))}
+            <div className="mt-4 text-center">
+              <p className="text-sm text-terminal-green/60">+ Additional projects & technical details in full resume</p>
             </div>
           </TerminalWindow>
-        </div>
-      </div>
 
-      {/* Online Indicator */}
-      <div className="fixed top-4 right-4 z-20">
-        <div className="terminal-window p-2">
-          <div className="flex items-center gap-2 text-xs">
-            <div className="w-2 h-2 bg-terminal-green rounded-full animate-pulse"></div>
-            <span className="text-terminal-green font-mono">ONLINE</span>
-          </div>
-          <div className="text-xs text-terminal-green/70 font-mono">
-            <div>xpd{'{'}qaqiq{'}'}</div>
-            <div>lqk89n2u2</div>
-            <div>vktjf8xv89</div>
-            <div>kn448rgj040</div>
-            <div>16v7xhdiqu6</div>
-          </div>
+          {/* Call to Action Summary */}
+          <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-12">
+            <div className="text-center space-y-6">
+              <div className="flex justify-center items-center gap-4 mb-6">
+                <Shield className="w-8 h-8 text-terminal-green-bright" />
+                <Brain className="w-8 h-8 text-terminal-green-bright" />
+                <Code className="w-8 h-8 text-terminal-green-bright" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-terminal-green-bright mb-4">
+                WHY CHOOSE ABHIRAM?
+              </h3>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-6">
+                <div className="p-4 border border-terminal-green/30 rounded">
+                  <h4 className="font-bold text-terminal-green-bright mb-2">SECURITY FIRST</h4>
+                  <p className="text-sm text-terminal-green/80">
+                    Hands-on experience with penetration testing, vulnerability assessment, and OWASP methodologies
+                  </p>
+                </div>
+                
+                <div className="p-4 border border-terminal-green/30 rounded">
+                  <h4 className="font-bold text-terminal-green-bright mb-2">PROVEN RESULTS</h4>
+                  <p className="text-sm text-terminal-green/80">
+                    35% conversion rates, leadership roles, and recognition across cybersecurity & business domains
+                  </p>
+                </div>
+                
+                <div className="p-4 border border-terminal-green/30 rounded">
+                  <h4 className="font-bold text-terminal-green-bright mb-2">FULL STACK</h4>
+                  <p className="text-sm text-terminal-green/80">
+                    From frontend development to backend security - complete technical versatility
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-terminal-bg-light p-6 rounded border border-terminal-green">
+                <p className="text-lg text-terminal-green-bright mb-4">
+                  🎯 <strong>Ready to secure your next project?</strong>
+                </p>
+                <p className="text-sm text-terminal-green/90 mb-6">
+                  This portfolio shows just a glimpse. My full resume contains detailed project breakdowns, 
+                  technical achievements, certifications, and quantified impact metrics that demonstrate 
+                  my value as a cybersecurity professional.
+                </p>
+                
+                <Button 
+                  variant="terminal" 
+                  size="lg" 
+                  onClick={handleDownloadResume}
+                  className="animate-terminal-glow"
+                >
+                  <Download className="w-5 h-5" />
+                  ACCESS FULL INTEL - DOWNLOAD RESUME
+                </Button>
+              </div>
+            </div>
+          </TerminalWindow>
         </div>
       </div>
     </div>
