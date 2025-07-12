@@ -24,8 +24,9 @@ const Index = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const keySkills = ["Python", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux"];
-  const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "Git"];
+  const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL"];
+  const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "PostgreSQL", "MongoDB", "Git", "VS Code", "Bash Scripting", "Jupyter"];
+  const additionalSkills = ["Vulnerability Assessment", "Network Security", "Unit Testing", "Test Case Design", "HTML/CSS", "SQLite"];
 
   const experiences = [
     {
@@ -146,6 +147,18 @@ const Index = () => {
                     <SkillTag key={tool} skill={tool} />
                   ))}
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
+                <Brain className="w-5 h-5" />
+                [ADDITIONAL_SKILLS]
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {additionalSkills.map((skill) => (
+                  <SkillTag key={skill} skill={skill} />
+                ))}
               </div>
             </div>
             
