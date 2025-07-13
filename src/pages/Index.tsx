@@ -4,7 +4,6 @@ import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award, Shield, Code, Brain } from "lucide-react";
-import kaliLogo from "@/assets/kali-logo.png";
 import cyberBg from "@/assets/cyber-bg.jpg";
 
 const Index = () => {
@@ -83,11 +82,6 @@ const Index = () => {
       {/* Matrix Rain Overlay */}
       <MatrixBackground />
       
-      {/* Kali Linux Logo Background */}
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10 z-0">
-        <img src={kaliLogo} alt="Kali Linux" className="w-96 h-96" />
-      </div>
-      
       {/* Hero Section */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
@@ -128,7 +122,12 @@ const Index = () => {
           </div>
           
           <div className="flex justify-center">
-            <Button variant="terminal" size="lg" className="animate-terminal-glow">
+            <Button 
+              variant="terminal" 
+              size="lg" 
+              className="animate-terminal-glow"
+              onClick={() => window.open('https://github.com/yourusername', '_blank')}
+            >
               <Github className="w-5 h-5" />
               GITHUB ACCESS
             </Button>
