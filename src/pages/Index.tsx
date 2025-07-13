@@ -5,6 +5,7 @@ import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award, Shield, Code, Brain } from "lucide-react";
 import kaliLogo from "@/assets/kali-logo.png";
+import cyberBg from "@/assets/cyber-bg.jpg";
 
 const Index = () => {
   const [typedText, setTypedText] = useState("");
@@ -70,10 +71,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-terminal-bg text-terminal-green relative">
+      {/* Professional Cybersecurity Background */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{
+          backgroundImage: `url(${cyberBg})`,
+          backgroundAttachment: 'fixed'
+        }}
+      />
+      
+      {/* Matrix Rain Overlay */}
       <MatrixBackground />
       
       {/* Kali Linux Logo Background */}
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20 z-0">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10 z-0">
         <img src={kaliLogo} alt="Kali Linux" className="w-96 h-96" />
       </div>
       
