@@ -36,8 +36,8 @@ export const MatrixBackground = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Green text
-      ctx.fillStyle = '#00ff00';
+      // Cyan text for cybersecurity theme
+      ctx.fillStyle = '#00ffff';
       ctx.font = fontSize + 'px JetBrains Mono';
 
       // Loop over drops
