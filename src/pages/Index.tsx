@@ -24,7 +24,7 @@ const Index = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL"];
+  const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL", "REMAC+"];
   const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "PostgreSQL", "MongoDB", "Git", "VS Code", "Bash Scripting", "Jupyter"];
   const additionalSkills = ["Vulnerability Assessment", "Network Security", "Unit Testing", "Test Case Design", "HTML/CSS", "SQLite"];
 
@@ -106,7 +106,12 @@ const Index = () => {
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <Mail className="w-4 h-4" />
-                <span>lankaabhiram16@gmail.com</span>
+                <a 
+                  href="mailto:lankaabhiram16@gmail.com" 
+                  className="hover:text-terminal-green-bright transition-colors cursor-pointer"
+                >
+                  lankaabhiram16@gmail.com
+                </a>
               </div>
             </div>
           </div>
