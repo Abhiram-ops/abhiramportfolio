@@ -126,7 +126,7 @@ const Index = () => {
               variant="terminal" 
               size="lg" 
               className="animate-terminal-glow"
-              onClick={() => window.open('https://github.com/yourusername', '_blank')}
+              onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
             >
               <Github className="w-5 h-5" />
               GITHUB ACCESS
