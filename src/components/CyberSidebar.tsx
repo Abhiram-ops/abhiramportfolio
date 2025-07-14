@@ -70,11 +70,6 @@ export function CyberSidebar({ activeSection, onSectionChange }: CyberSidebarPro
 
   const handleSectionClick = (sectionId: string) => {
     onSectionChange(sectionId);
-    // Smooth scroll to section
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   };
 
   const getStatusColor = (status: string) => {
