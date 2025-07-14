@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
-import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award, Shield, Code, Brain } from "lucide-react";
+import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award, Shield, Code, Brain, Lock, Unlock } from "lucide-react";
 import cyberBg from "@/assets/cyber-bg.jpg";
 
 const Index = () => {
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [typedText, setTypedText] = useState("");
   const fullText = "ABHIRAM LANKA";
   
@@ -68,8 +70,95 @@ const Index = () => {
     window.open(downloadUrl, '_blank');
   };
 
+  const handleUnlock = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsUnlocked(true);
+      setIsAnimating(false);
+    }, 2000);
+  };
+
+  // Lock Screen Component
+  if (!isUnlocked && !isAnimating) {
+    return (
+      <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center">
+        <MatrixBackground />
+        
+        <div className="relative z-10 text-center max-w-md mx-auto px-4">
+          {/* Letter/Envelope UI */}
+          <div className="bg-terminal-bg-light border-2 border-terminal-green rounded-lg p-8 shadow-2xl">
+            <div className="mb-6">
+              {/* Envelope/Letter Icon */}
+              <div className="w-24 h-16 mx-auto mb-4 border-2 border-terminal-green rounded relative">
+                <div className="absolute top-2 left-2 right-2 bottom-2 border border-terminal-green/50 rounded"></div>
+                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                  <Lock className="w-8 h-8 text-terminal-green-bright animate-pulse" />
+                </div>
+              </div>
+              
+              <h1 className="text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">
+                CLASSIFIED ACCESS
+              </h1>
+              <p className="text-terminal-green/80 text-sm mb-6">
+                Security credentials required
+              </p>
+            </div>
+            
+            <div className="text-center mb-6">
+              <p className="text-terminal-green-bright font-bold mb-4">
+                UNLOCK TO PROCEED
+              </p>
+              <p className="text-xs text-terminal-green/60 mb-6">
+                Click the lock to access ABHIRAM's portfolio
+              </p>
+            </div>
+            
+            <Button
+              onClick={handleUnlock}
+              variant="terminal"
+              size="lg"
+              className="w-full animate-terminal-glow"
+            >
+              <Unlock className="w-5 h-5 mr-2" />
+              GRANT ACCESS
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Animation Screen
+  if (isAnimating) {
+    return (
+      <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center">
+        <MatrixBackground />
+        
+        <div className="relative z-10 text-center">
+          <div className="animate-pulse">
+            <Shield className="w-24 h-24 mx-auto text-terminal-green-bright mb-4 animate-spin" />
+            <h2 className="text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">
+              INITIALIZING SECURE CONNECTION...
+            </h2>
+            <p className="text-terminal-green/80">
+              Decrypting portfolio data...
+            </p>
+            <div className="mt-4 flex justify-center">
+              <div className="flex space-x-1">
+                <div className="w-2 h-2 bg-terminal-green-bright rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-terminal-green-bright rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                <div className="w-2 h-2 bg-terminal-green-bright rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Main Portfolio Content
   return (
-    <div className="min-h-screen bg-terminal-bg text-terminal-green relative">
+    <div className="min-h-screen bg-terminal-bg text-terminal-green relative animate-fade-in">
       {/* Professional Cybersecurity Background */}
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30"
