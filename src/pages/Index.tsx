@@ -56,14 +56,29 @@ const Index = () => {
 
   const featuredProjects = [
     {
+      title: "Cybersweep",
+      description: "Advanced cybersecurity reconnaissance tool for comprehensive network analysis, vulnerability detection, and threat assessment with automated reporting capabilities",
+      impact: "CRITICAL",
+      tech: "Python • Nmap • Security Analytics • Automation",
+      github: "https://github.com/Abhiram-ops/Cybersweep"
+    },
+    {
+      title: "Network Security Assessment Tool",
+      description: "Automated vulnerability scanning and penetration testing framework with real-time threat detection and comprehensive security analysis",
+      impact: "CRITICAL",
+      tech: "Python • Nessus • OpenVAS • Custom Scripts"
+    },
+    {
       title: "Web Vulnerability Scanner",
-      description: "Advanced OWASP Top 10 detection tool with automated reporting",
-      impact: "Security Testing"
+      description: "Advanced OWASP Top 10 detection tool with automated reporting and secure code analysis",
+      impact: "HIGH",
+      tech: "Python • OWASP • Burp Suite • Web Security"
     },
     {
       title: "LeadFinder Tool",
-      description: "Automated lead generation with advanced scraping techniques", 
-      impact: "35% efficiency boost"
+      description: "Automated lead generation with advanced scraping techniques and data analytics for business intelligence", 
+      impact: "HIGH",
+      tech: "Python • Web Scraping • Data Analytics • Automation"
     }
   ];
 
@@ -230,10 +245,27 @@ const Index = () => {
               <TerminalWindow title="FEATURED_EXPLOITS.DIR" className="mb-12">
                 <div className="space-y-4">
                   {featuredProjects.map((project, index) => (
-                    <div key={index} className="border border-terminal-green/30 p-4 rounded">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-lg font-bold text-terminal-green-bright">{project.title}</h3>
-                        <span className="text-xs text-terminal-green/60 bg-terminal-bg-light px-2 py-1 rounded">
+                    <div key={index} className="border border-terminal-green/30 p-4 rounded hover:border-terminal-green/50 transition-colors">
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="text-lg font-bold text-terminal-green-bright">{project.title}</h3>
+                            {project.github && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => window.open(project.github, '_blank')}
+                                className="h-6 w-6 p-0 text-terminal-green hover:text-terminal-green-bright"
+                              >
+                                <Github className="w-4 h-4" />
+                              </Button>
+                            )}
+                          </div>
+                          {project.tech && (
+                            <p className="text-xs text-terminal-green/60 mb-2 font-mono">{project.tech}</p>
+                          )}
+                        </div>
+                        <span className="text-xs text-terminal-green/60 bg-terminal-bg-light px-2 py-1 rounded self-start">
                           {project.impact}
                         </span>
                       </div>
@@ -376,7 +408,7 @@ const Index = () => {
         
         <div className="relative z-10 text-center max-w-md mx-auto px-4">
           {/* Letter/Envelope UI */}
-          <div className="bg-terminal-bg-light border-2 border-terminal-green rounded-lg p-8 shadow-2xl">
+          <div className="bg-terminal-bg-light border-2 border-terminal-green rounded-lg p-6 md:p-8 shadow-2xl">
             <div className="mb-6">
               {/* Envelope/Letter Icon */}
               <div className="w-24 h-16 mx-auto mb-4 border-2 border-terminal-green rounded relative">
@@ -386,10 +418,10 @@ const Index = () => {
                 </div>
               </div>
               
-              <h1 className="text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">
+              <h1 className="text-xl md:text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">
                 CLASSIFIED ACCESS
               </h1>
-              <p className="text-terminal-green/80 text-sm mb-6">
+              <p className="text-terminal-green/80 text-sm mb-4 md:mb-6">
                 Security credentials required
               </p>
             </div>
@@ -418,26 +450,94 @@ const Index = () => {
     );
   }
 
-  // Animation Screen
+  // High-End Cybersecurity Animation Screen
   if (isAnimating) {
     return (
-      <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center">
+      <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
         <MatrixBackground />
         
-        <div className="relative z-10 text-center">
-          <div className="animate-pulse">
-            <Shield className="w-24 h-24 mx-auto text-terminal-green-bright mb-4 animate-spin" />
-            <h2 className="text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">
-              INITIALIZING SECURE CONNECTION...
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-terminal-green/10 to-transparent animate-pulse"></div>
+          <div className="grid grid-cols-12 gap-1 h-full opacity-30">
+            {Array.from({length: 144}).map((_, i) => (
+              <div 
+                key={i} 
+                className="border border-terminal-green/20 animate-pulse"
+                style={{animationDelay: `${i * 0.05}s`}}
+              ></div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="relative z-10 text-center max-w-2xl px-4">
+          {/* Central Scanning Interface */}
+          <div className="relative mb-8">
+            {/* Outer Scanning Ring */}
+            <div className="w-64 h-64 mx-auto relative">
+              <div className="absolute inset-0 border-2 border-terminal-green/30 rounded-full animate-spin"></div>
+              <div className="absolute inset-4 border border-terminal-green/50 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '3s'}}></div>
+              <div className="absolute inset-8 border border-terminal-green/70 rounded-full animate-spin" style={{animationDuration: '2s'}}></div>
+              
+              {/* Central Shield Icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative">
+                  <Shield className="w-20 h-20 text-terminal-green-bright animate-pulse" />
+                  <div className="absolute inset-0 w-20 h-20 border-2 border-terminal-green-bright rounded-lg animate-ping"></div>
+                </div>
+              </div>
+              
+              {/* Scanning Lines */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-1 h-32 bg-gradient-to-t from-transparent via-terminal-green-bright to-transparent rotate-45 animate-spin origin-bottom" style={{animationDuration: '1.5s'}}></div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Status Display */}
+          <div className="space-y-4 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-terminal-green-bright glitch-text">
+              QUANTUM DECRYPTION IN PROGRESS
             </h2>
-            <p className="text-terminal-green/80">
-              Decrypting portfolio data...
-            </p>
-            <div className="mt-4 flex justify-center">
-              <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-terminal-green-bright rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-terminal-green-bright rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                <div className="w-2 h-2 bg-terminal-green-bright rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+            <div className="space-y-2">
+              <p className="text-terminal-green-bright font-mono">
+                » Bypassing quantum encryption barriers...
+              </p>
+              <p className="text-terminal-green font-mono">
+                » Authenticating biometric signatures...
+              </p>
+              <p className="text-terminal-green/80 font-mono">
+                » Establishing secure neural link...
+              </p>
+            </div>
+          </div>
+          
+          {/* Progress Indicators */}
+          <div className="space-y-4">
+            <div className="flex justify-center space-x-2">
+              {[...Array(8)].map((_, i) => (
+                <div 
+                  key={i}
+                  className="w-3 h-3 border border-terminal-green-bright rounded-full"
+                  style={{
+                    backgroundColor: i < 6 ? 'hsl(var(--terminal-green-bright))' : 'transparent',
+                    animationDelay: `${i * 0.2}s`
+                  }}
+                ></div>
+              ))}
+            </div>
+            
+            {/* Scrolling Code Effect */}
+            <div className="h-32 overflow-hidden font-mono text-xs text-terminal-green/60">
+              <div className="animate-scroll-up space-y-1">
+                <p>0x7FF3A2B1: AUTHENTICATION_PROTOCOL_INITIALIZED</p>
+                <p>0x7FF3A2B2: QUANTUM_KEY_EXCHANGE_ACTIVE</p>
+                <p>0x7FF3A2B3: NEURAL_HANDSHAKE_ESTABLISHED</p>
+                <p>0x7FF3A2B4: BIOMETRIC_VERIFICATION_COMPLETE</p>
+                <p>0x7FF3A2B5: ENCRYPTION_LAYER_1_BYPASSED</p>
+                <p>0x7FF3A2B6: ENCRYPTION_LAYER_2_BYPASSED</p>
+                <p>0x7FF3A2B7: FIREWALL_NEGOTIATION_SUCCESS</p>
+                <p>0x7FF3A2B8: ACCESS_GRANTED_PORTFOLIO_UNLOCKED</p>
               </div>
             </div>
           </div>

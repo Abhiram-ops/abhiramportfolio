@@ -120,6 +120,10 @@ export default {
 				'terminal-glow': {
 					'0%, 100%': { boxShadow: '0 0 10px hsl(var(--terminal-green) / 0.5)' },
 					'50%': { boxShadow: '0 0 20px hsl(var(--terminal-green) / 0.8)' }
+				},
+				'scroll-up': {
+					'0%': { transform: 'translateY(100%)' },
+					'100%': { transform: 'translateY(-100%)' }
 				}
 			},
 			animation: {
@@ -129,7 +133,8 @@ export default {
 				'glitch': 'glitch 2s infinite',
 				'typing': 'typing 3.5s steps(40, end)',
 				'blink': 'blink 1s infinite',
-				'terminal-glow': 'terminal-glow 2s ease-in-out infinite'
+				'terminal-glow': 'terminal-glow 2s ease-in-out infinite',
+				'scroll-up': 'scroll-up 8s linear infinite'
 			}
 		}
 	},
