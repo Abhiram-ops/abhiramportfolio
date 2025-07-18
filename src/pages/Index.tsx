@@ -11,7 +11,8 @@ import cyberBg from "@/assets/cyber-bg.jpg";
 const Index = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("");
+  const [showSidebar, setShowSidebar] = useState(true);
   const [typedText, setTypedText] = useState("");
   const fullText = "ABHIRAM LANKA";
   
@@ -96,15 +97,36 @@ const Index = () => {
     }, 2000);
   };
 
+  const sections = ["hero", "skills", "experience", "projects", "assessment", "contact"];
+  
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
+    setShowSidebar(false);
+  };
+
+  const handleNextSection = () => {
+    const currentIndex = sections.indexOf(activeSection);
+    const nextIndex = (currentIndex + 1) % sections.length;
+    setActiveSection(sections[nextIndex]);
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.currentTarget;
+    const { scrollTop, scrollHeight, clientHeight } = element;
+    
+    // Check if scrolled to bottom (with small threshold)
+    if (scrollTop + clientHeight >= scrollHeight - 50) {
+      setTimeout(() => {
+        handleNextSection();
+      }, 1000); // Wait 1 second before transitioning
+    }
   };
 
   const renderActiveSection = () => {
     switch (activeSection) {
       case "hero":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4">
+          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="text-center max-w-4xl mx-auto animate-fade-in">
               <div className="mb-8">
                 <h1 className="text-6xl md:text-8xl font-bold mb-4 glitch-text font-mono">
@@ -142,7 +164,7 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-8">
                 <Button 
                   variant="terminal" 
                   size="lg" 
@@ -153,13 +175,16 @@ const Index = () => {
                   GITHUB ACCESS
                 </Button>
               </div>
+              
+              {/* Add padding at bottom to trigger scroll */}
+              <div className="h-96"></div>
             </div>
           </section>
         );
 
       case "skills":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4">
+          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="CORE_EXPERTISE.SYS" className="mb-12">
                 <div className="grid md:grid-cols-2 gap-8">
@@ -207,13 +232,16 @@ const Index = () => {
                   </p>
                 </div>
               </TerminalWindow>
+              
+              {/* Add padding at bottom to trigger scroll */}
+              <div className="h-96"></div>
             </div>
           </section>
         );
 
       case "experience":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4">
+          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="RECENT_MISSIONS.LOG" className="mb-12">
                 <div className="space-y-4">
@@ -234,13 +262,16 @@ const Index = () => {
                   <p className="text-sm text-terminal-green/60">+ Detailed achievements & impact metrics in resume</p>
                 </div>
               </TerminalWindow>
+              
+              {/* Add padding at bottom to trigger scroll */}
+              <div className="h-96"></div>
             </div>
           </section>
         );
 
       case "projects":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4">
+          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="FEATURED_EXPLOITS.DIR" className="mb-12">
                 <div className="space-y-4">
@@ -277,13 +308,16 @@ const Index = () => {
                   <p className="text-sm text-terminal-green/60">+ Additional projects & technical details in full resume</p>
                 </div>
               </TerminalWindow>
+              
+              {/* Add padding at bottom to trigger scroll */}
+              <div className="h-96"></div>
             </div>
           </section>
         );
 
       case "assessment":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4">
+          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-12">
                 <div className="text-center space-y-6">
@@ -335,13 +369,16 @@ const Index = () => {
                   </div>
                 </div>
               </TerminalWindow>
-            </div>
-          </section>
-        );
+              
+                {/* Add padding at bottom to trigger scroll */}
+                <div className="h-96"></div>
+              </div>
+            </section>
+          );
 
       case "contact":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4">
+          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="SECURE_CHANNEL.COMM" className="mb-12">
                 <div className="text-center space-y-6">
@@ -396,7 +433,16 @@ const Index = () => {
         );
 
       default:
-        return null;
+        return (
+          <section className="min-h-screen flex items-center justify-center px-4 relative z-10">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold mb-4 text-terminal-green-bright">
+                SELECT A SECTION
+              </h1>
+              <p className="text-terminal-green/80">Choose a security module from the sidebar to proceed.</p>
+            </div>
+          </section>
+        );
     }
   };
 
@@ -548,46 +594,36 @@ const Index = () => {
 
   // Main Portfolio Content with Sidebar
   return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-terminal-bg text-terminal-green">
-        {/* Cybersecurity Sidebar */}
-        <CyberSidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
+    <SidebarProvider defaultOpen={showSidebar}>
+      <div className="min-h-screen flex w-full bg-terminal-bg">
+        <MatrixBackground />
         
-        {/* Main Content */}
-        <main className="flex-1 relative">
-          {/* Header with Sidebar Trigger */}
-          <header className="sticky top-0 z-20 h-12 flex items-center bg-terminal-bg/95 backdrop-blur border-b border-terminal-green/30">
-            <SidebarTrigger className="ml-4 text-terminal-green-bright hover:text-terminal-green" />
-            <div className="flex-1 text-center">
-              <span className="text-xs font-mono text-terminal-green-bright">
-                SECURE SESSION ACTIVE • ACCESS LEVEL: ADMIN
-              </span>
-            </div>
-            <div className="mr-4">
-              <span className="text-xs text-terminal-green/60">
-                {new Date().toLocaleTimeString()}
-              </span>
-            </div>
-          </header>
-
-          {/* Professional Cybersecurity Background */}
-          <div 
-            className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: `url(${cyberBg})`,
-              backgroundAttachment: 'fixed'
-            }}
+        {showSidebar && (
+          <CyberSidebar 
+            activeSection={activeSection} 
+            onSectionChange={handleSectionChange} 
           />
+        )}
+        
+        <main className="flex-1 relative">
+          {/* Back to sidebar button when section is active */}
+          {activeSection && !showSidebar && (
+            <button
+              onClick={() => setShowSidebar(true)}
+              className="fixed top-4 left-4 z-50 bg-terminal-bg border border-terminal-green/30 
+                       rounded p-2 text-terminal-green-bright hover:bg-terminal-green/10 
+                       transition-all duration-300"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          )}
           
           {/* Matrix Rain Overlay with 50% opacity */}
           <div className="fixed inset-0 z-5" style={{ opacity: 0.5 }}>
             <MatrixBackground />
           </div>
           
-          {/* Dynamic Section Content */}
-          <div className="relative z-10">
-            {renderActiveSection()}
-          </div>
+          {renderActiveSection()}
         </main>
       </div>
     </SidebarProvider>
