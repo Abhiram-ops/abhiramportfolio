@@ -115,10 +115,13 @@ const Index = () => {
     const { scrollTop, scrollHeight, clientHeight } = element;
     
     // Check if scrolled to bottom (with small threshold)
-    if (scrollTop + clientHeight >= scrollHeight - 50) {
-      setTimeout(() => {
-        handleNextSection();
-      }, 1000); // Wait 1 second before transitioning
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      const currentIndex = sections.indexOf(activeSection);
+      if (currentIndex < sections.length - 1) {
+        setTimeout(() => {
+          handleNextSection();
+        }, 800);
+      }
     }
   };
 
@@ -126,37 +129,37 @@ const Index = () => {
     switch (activeSection) {
       case "hero":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
-            <div className="text-center max-w-4xl mx-auto animate-fade-in">
-              <div className="mb-8">
-                <h1 className="text-6xl md:text-8xl font-bold mb-4 glitch-text font-mono">
+          <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
+            <div className="text-center max-w-4xl mx-auto animate-fade-in w-full">
+              <div className="mb-6 sm:mb-8">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 glitch-text font-mono break-words">
                   {typedText}
                   <span className="animate-blink">|</span>
                 </h1>
-                <h2 className="text-xl md:text-2xl font-bold text-terminal-green-bright mb-4">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-terminal-green-bright mb-4 px-2">
                   TECH-SAVVY COMPUTER SCIENCE STUDENT
                 </h2>
-                <p className="text-sm md:text-base text-terminal-green/80 mb-2">
+                <p className="text-xs sm:text-sm md:text-base text-terminal-green/80 mb-2 px-2">
                   Specialized in <span className="text-terminal-green-bright">CYBERSECURITY</span> & <span className="text-terminal-green-bright">PENETRATION TESTING</span>
                 </p>
-                <p className="text-sm md:text-base text-terminal-green/80 mb-8">
+                <p className="text-xs sm:text-sm md:text-base text-terminal-green/80 mb-6 sm:mb-8 px-2">
                   Ethical hacker | Security researcher | Code architect
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                  <div className="flex items-center gap-2 text-sm">
-                    <MapPin className="w-4 h-4" />
-                    <span>Visakhapatnam, Andhra Pradesh</span>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-2">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm">
+                    <MapPin className="w-4 h-4 flex-shrink-0" />
+                    <span className="break-words">Visakhapatnam, Andhra Pradesh</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="w-4 h-4" />
-                    <span>9556925563</span>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm">
+                    <Phone className="w-4 h-4 flex-shrink-0" />
+                    <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail className="w-4 h-4" />
+                  <div className="flex items-center gap-2 text-xs sm:text-sm">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
                     <a 
                       href="mailto:lankaabhiram16@gmail.com" 
-                      className="hover:text-terminal-green-bright transition-colors cursor-pointer"
+                      className="hover:text-terminal-green-bright transition-colors cursor-pointer break-all"
                     >
                       lankaabhiram16@gmail.com
                     </a>
@@ -168,25 +171,25 @@ const Index = () => {
                 <Button 
                   variant="terminal" 
                   size="lg" 
-                  className="animate-terminal-glow"
+                  className="animate-terminal-glow w-full sm:w-auto text-sm sm:text-base"
                   onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                   GITHUB ACCESS
                 </Button>
               </div>
               
               {/* Add padding at bottom to trigger scroll */}
-              <div className="h-96"></div>
+              <div className="h-64 sm:h-96"></div>
             </div>
           </section>
         );
 
       case "skills":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
+          <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="CORE_EXPERTISE.SYS" className="mb-12">
+              <TerminalWindow title="CORE_EXPERTISE.SYS" className="mb-8 sm:mb-12">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
@@ -234,124 +237,124 @@ const Index = () => {
               </TerminalWindow>
               
               {/* Add padding at bottom to trigger scroll */}
-              <div className="h-96"></div>
+              <div className="h-64 sm:h-96"></div>
             </div>
           </section>
         );
 
       case "experience":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
+          <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="RECENT_MISSIONS.LOG" className="mb-12">
+              <TerminalWindow title="RECENT_MISSIONS.LOG" className="mb-8 sm:mb-12">
                 <div className="space-y-4">
                   {experiences.map((exp, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border border-terminal-green/20 rounded">
-                      <div>
-                        <h3 className="font-bold text-terminal-green-bright">{exp.company}</h3>
-                        <p className="text-sm text-terminal-green/80">{exp.position}</p>
+                    <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-terminal-green/20 rounded gap-2">
+                      <div className="flex-1">
+                        <h3 className="font-bold text-terminal-green-bright text-sm sm:text-base">{exp.company}</h3>
+                        <p className="text-xs sm:text-sm text-terminal-green/80">{exp.position}</p>
                       </div>
-                      <div className="text-right">
+                      <div className="sm:text-right">
                         <p className="text-xs text-terminal-green/60">{exp.period}</p>
-                        <p className="text-sm text-terminal-green">{exp.highlight}</p>
+                        <p className="text-xs sm:text-sm text-terminal-green">{exp.highlight}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 text-center">
-                  <p className="text-sm text-terminal-green/60">+ Detailed achievements & impact metrics in resume</p>
+                  <p className="text-xs sm:text-sm text-terminal-green/60 px-2">+ Detailed achievements & impact metrics in resume</p>
                 </div>
               </TerminalWindow>
               
               {/* Add padding at bottom to trigger scroll */}
-              <div className="h-96"></div>
+              <div className="h-64 sm:h-96"></div>
             </div>
           </section>
         );
 
       case "projects":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
+          <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="FEATURED_EXPLOITS.DIR" className="mb-12">
+              <TerminalWindow title="FEATURED_EXPLOITS.DIR" className="mb-8 sm:mb-12">
                 <div className="space-y-4">
                   {featuredProjects.map((project, index) => (
-                    <div key={index} className="border border-terminal-green/30 p-4 rounded hover:border-terminal-green/50 transition-colors">
+                    <div key={index} className="border border-terminal-green/30 p-3 sm:p-4 rounded hover:border-terminal-green/50 transition-colors">
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-lg font-bold text-terminal-green-bright">{project.title}</h3>
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <h3 className="text-base sm:text-lg font-bold text-terminal-green-bright">{project.title}</h3>
                             {project.github && (
                               <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => window.open(project.github, '_blank')}
-                                className="h-6 w-6 p-0 text-terminal-green hover:text-terminal-green-bright"
+                                className="h-6 w-6 p-0 text-terminal-green hover:text-terminal-green-bright flex-shrink-0"
                               >
                                 <Github className="w-4 h-4" />
                               </Button>
                             )}
                           </div>
                           {project.tech && (
-                            <p className="text-xs text-terminal-green/60 mb-2 font-mono">{project.tech}</p>
+                            <p className="text-xs text-terminal-green/60 mb-2 font-mono break-words">{project.tech}</p>
                           )}
                         </div>
-                        <span className="text-xs text-terminal-green/60 bg-terminal-bg-light px-2 py-1 rounded self-start">
+                        <span className="text-xs text-terminal-green/60 bg-terminal-bg-light px-2 py-1 rounded self-start flex-shrink-0">
                           {project.impact}
                         </span>
                       </div>
-                      <p className="text-sm text-terminal-green/90">{project.description}</p>
+                      <p className="text-xs sm:text-sm text-terminal-green/90">{project.description}</p>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 text-center">
-                  <p className="text-sm text-terminal-green/60">+ Additional projects & technical details in full resume</p>
+                  <p className="text-xs sm:text-sm text-terminal-green/60 px-2">+ Additional projects & technical details in full resume</p>
                 </div>
               </TerminalWindow>
               
               {/* Add padding at bottom to trigger scroll */}
-              <div className="h-96"></div>
+              <div className="h-64 sm:h-96"></div>
             </div>
           </section>
         );
 
       case "assessment":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
+          <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-12">
-                <div className="text-center space-y-6">
-                  <div className="flex justify-center items-center gap-4 mb-6">
-                    <Shield className="w-8 h-8 text-terminal-green-bright" />
-                    <Brain className="w-8 h-8 text-terminal-green-bright" />
-                    <Code className="w-8 h-8 text-terminal-green-bright" />
+              <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-8 sm:mb-12">
+                <div className="text-center space-y-4 sm:space-y-6 px-2">
+                  <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright" />
+                    <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright" />
+                    <Code className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright" />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-terminal-green-bright mb-4 font-sans">
+                  <h3 className="text-xl sm:text-2xl font-bold text-terminal-green-bright mb-4 font-sans">
                     WHY CHOOSE ME?
                   </h3>
                   
-                  <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    <div className="p-4 border border-terminal-green/30 rounded">
-                      <h4 className="font-bold text-terminal-green-bright mb-2">SECURITY FIRST</h4>
-                      <p className="text-sm text-terminal-green/80">
+                  <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+                    <div className="p-3 sm:p-4 border border-terminal-green/30 rounded">
+                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">SECURITY FIRST</h4>
+                      <p className="text-xs sm:text-sm text-terminal-green/80">
                         Hands-on experience with penetration testing, vulnerability assessment, and OWASP methodologies
                       </p>
                     </div>
                     
-                    <div className="p-4 border border-terminal-green/30 rounded">
-                      <h4 className="font-bold text-terminal-green-bright mb-2">PROVEN RESULTS</h4>
-                      <p className="text-sm text-terminal-green/80">
+                    <div className="p-3 sm:p-4 border border-terminal-green/30 rounded">
+                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">PROVEN RESULTS</h4>
+                      <p className="text-xs sm:text-sm text-terminal-green/80">
                         35% conversion rates, leadership roles, and recognition across cybersecurity & business domains
                       </p>
                     </div>
                   </div>
                   
-                  <div className="bg-terminal-bg-light p-6 rounded border border-terminal-green">
-                    <p className="text-lg text-terminal-green-bright mb-4">
+                  <div className="bg-terminal-bg-light p-4 sm:p-6 rounded border border-terminal-green">
+                    <p className="text-base sm:text-lg text-terminal-green-bright mb-3 sm:mb-4">
                       🎯 <strong>Ready to secure your next project?</strong>
                     </p>
-                    <p className="text-sm text-terminal-green/90 mb-6">
+                    <p className="text-xs sm:text-sm text-terminal-green/90 mb-4 sm:mb-6">
                       This portfolio shows just a glimpse. My full resume contains detailed project breakdowns, 
                       technical achievements, certifications, and quantified impact metrics that demonstrate 
                       my value as a cybersecurity professional.
@@ -361,69 +364,69 @@ const Index = () => {
                       variant="terminal" 
                       size="lg" 
                       onClick={handleDownloadResume}
-                      className="animate-terminal-glow"
+                      className="animate-terminal-glow w-full sm:w-auto text-xs sm:text-sm"
                     >
-                      <Download className="w-5 h-5" />
-                      ACCESS FULL INTEL - DOWNLOAD RESUME
+                      <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <span className="truncate">ACCESS FULL INTEL - DOWNLOAD RESUME</span>
                     </Button>
                   </div>
                 </div>
               </TerminalWindow>
               
                 {/* Add padding at bottom to trigger scroll */}
-                <div className="h-96"></div>
+                <div className="h-64 sm:h-96"></div>
               </div>
             </section>
           );
 
       case "contact":
         return (
-          <section className="min-h-screen flex items-center justify-center px-4 overflow-y-auto relative z-10" onScroll={handleScroll}>
+          <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="SECURE_CHANNEL.COMM" className="mb-12">
-                <div className="text-center space-y-6">
-                  <h3 className="text-2xl font-bold text-terminal-green-bright mb-6">
+              <TerminalWindow title="SECURE_CHANNEL.COMM" className="mb-8 sm:mb-12">
+                <div className="text-center space-y-4 sm:space-y-6 px-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-terminal-green-bright mb-4 sm:mb-6">
                     ESTABLISH SECURE CONNECTION
                   </h3>
                   
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="p-6 border border-terminal-green/30 rounded bg-terminal-bg/50">
-                      <Github className="w-8 h-8 text-terminal-green-bright mx-auto mb-4" />
-                      <h4 className="font-bold text-terminal-green-bright mb-2">CODE REPOSITORY</h4>
-                      <p className="text-sm text-terminal-green/80 mb-4">
+                  <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="p-4 sm:p-6 border border-terminal-green/30 rounded bg-terminal-bg/50">
+                      <Github className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright mx-auto mb-3 sm:mb-4" />
+                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">CODE REPOSITORY</h4>
+                      <p className="text-xs sm:text-sm text-terminal-green/80 mb-3 sm:mb-4">
                         Access my secure development environment and project archives
                       </p>
                       <Button 
                         variant="outline" 
                         size="sm"
                         onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
-                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10"
+                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full sm:w-auto text-xs sm:text-sm"
                       >
                         GITHUB ACCESS
                       </Button>
                     </div>
                     
-                    <div className="p-6 border border-terminal-green/30 rounded bg-terminal-bg/50">
-                      <Download className="w-8 h-8 text-terminal-green-bright mx-auto mb-4" />
-                      <h4 className="font-bold text-terminal-green-bright mb-2">INTELLIGENCE REPORT</h4>
-                      <p className="text-sm text-terminal-green/80 mb-4">
+                    <div className="p-4 sm:p-6 border border-terminal-green/30 rounded bg-terminal-bg/50">
+                      <Download className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright mx-auto mb-3 sm:mb-4" />
+                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">INTELLIGENCE REPORT</h4>
+                      <p className="text-xs sm:text-sm text-terminal-green/80 mb-3 sm:mb-4">
                         Download comprehensive analysis of capabilities and achievements
                       </p>
                       <Button 
                         variant="outline" 
                         size="sm"
                         onClick={handleDownloadResume}
-                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10"
+                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full sm:w-auto text-xs sm:text-sm"
                       >
                         DOWNLOAD RESUME
                       </Button>
                     </div>
                   </div>
                   
-                  <div className="mt-8 p-4 border border-terminal-green/30 rounded bg-terminal-bg-light">
-                    <p className="text-sm text-terminal-green/90">
+                  <div className="mt-6 sm:mt-8 p-3 sm:p-4 border border-terminal-green/30 rounded bg-terminal-bg-light">
+                    <p className="text-xs sm:text-sm text-terminal-green/90 break-words">
                       <strong>DIRECT COMMUNICATION CHANNELS:</strong><br />
-                      📧 lankaabhiram16@gmail.com | 📞 9556925563 | 📍 Visakhapatnam, AP
+                      📧 <a href="mailto:lankaabhiram16@gmail.com" className="hover:text-terminal-green-bright transition-colors break-all">lankaabhiram16@gmail.com</a><br className="sm:hidden" /> | 📞 <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a><br className="sm:hidden" /> | 📍 Visakhapatnam, AP
                     </p>
                   </div>
                 </div>
@@ -609,12 +612,16 @@ const Index = () => {
           {/* Back to sidebar button when section is active */}
           {activeSection && !showSidebar && (
             <button
-              onClick={() => setShowSidebar(true)}
+              onClick={() => {
+                setShowSidebar(true);
+                setActiveSection("");
+              }}
               className="fixed top-4 left-4 z-50 bg-terminal-bg border border-terminal-green/30 
                        rounded p-2 text-terminal-green-bright hover:bg-terminal-green/10 
-                       transition-all duration-300"
+                       transition-all duration-300 shadow-lg"
+              aria-label="Back to menu"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           )}
           
