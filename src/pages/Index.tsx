@@ -36,6 +36,12 @@ const Index = () => {
 
   const experiences = [
     {
+      company: "OpenHire",
+      position: "Business Development Associate (Internship)",
+      period: "Feb 2026 - Present",
+      highlight: "Managing high-impact client acquisition and partnership growth for OpenHire, a premier recruitment firm specialized in high-growth startups and large-scale businesses. Building high-performance sales and ops engines for EdTech & SaaS clients."
+    },
+    {
       company: "Caarya",
       position: "Business Development Associate",
       period: "Feb 2025 - Present",
