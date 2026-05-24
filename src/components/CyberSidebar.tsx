@@ -111,40 +111,35 @@ export function CyberSidebar({ activeSection, onSectionChange }: CyberSidebarPro
                 
                 return (
                   <SidebarMenuItem key={section.id}>
-                    <SidebarMenuButton 
-                      asChild
+                    <button
+                      onClick={() => handleSectionClick(section.id)}
                       className={`
-                        group relative overflow-hidden transition-all duration-300 p-3
+                        group relative overflow-hidden transition-all duration-300 p-3 w-full flex items-center rounded-md text-sm
                         ${isActive 
                           ? "bg-terminal-green/20 border border-terminal-green text-terminal-green-bright" 
-                          : "hover:bg-terminal-green/10 border border-transparent hover:border-terminal-green/30"
+                          : "hover:bg-terminal-green/10 border border-transparent hover:border-terminal-green/30 text-terminal-green"
                         }
                       `}
                     >
-                      <button onClick={() => handleSectionClick(section.id)} className="flex items-center w-full">
-                        <section.icon className="w-4 h-4 mr-3 shrink-0" />
-                        
-                        <div className="flex-1 text-left">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-bold text-xs">{section.title}</span>
-                            <span className={`text-xs ${getStatusColor(section.status)}`}>
-                              ●
-                            </span>
-                          </div>
-                          <div className="text-xs text-terminal-green/70">
-                            {section.description}
-                          </div>
+                      <section.icon className="w-4 h-4 mr-3 shrink-0" />
+                      
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-bold text-xs">{section.title}</span>
+                          <span className={`text-xs ${getStatusColor(section.status)}`}>
+                            ●
+                          </span>
                         </div>
-                        
-                        {/* Active indicator */}
-                        {isActive && (
-                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-terminal-green-bright animate-pulse" />
-                        )}
-                        
-                        {/* Hover glow effect */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-terminal-green transition-opacity duration-300" />
-                      </button>
-                    </SidebarMenuButton>
+                        <div className="text-xs text-terminal-green/70">
+                          {section.description}
+                        </div>
+                      </div>
+                      
+                      {/* Active indicator */}
+                      {isActive && (
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-terminal-green-bright animate-pulse" />
+                      )}
+                    </button>
                   </SidebarMenuItem>
                 );
               })}
