@@ -519,7 +519,7 @@ const Index = () => {
   return (
     <SidebarProvider defaultOpen={showSidebar}>
       <div className="min-h-screen flex w-full bg-terminal-bg">
-        <MatrixBackground />
+        <div style={{pointerEvents:'none'}}><MatrixBackground /></div>
         {showSidebar && (
           <CyberSidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
         )}
@@ -533,7 +533,7 @@ const Index = () => {
               <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           )}
-          <div className="fixed inset-0 z-5" style={{opacity:0.4}}>
+          <div className="fixed inset-0 z-5" style={{opacity:0.4, pointerEvents:'none'}}>
             <MatrixBackground />
           </div>
           {renderActiveSection()}
