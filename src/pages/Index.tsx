@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
-import { Github, Download, Mail, Phone, MapPin, ExternalLink, Calendar, Building, GraduationCap, Award, Shield, Code, Brain, Lock, Unlock, Menu } from "lucide-react";
-import cyberBg from "@/assets/cyber-bg.jpg";
+import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Menu, Award, Briefcase, Linkedin } from "lucide-react";
 
 const Index = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -15,7 +14,7 @@ const Index = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const [typedText, setTypedText] = useState("");
   const fullText = "ABHIRAM LANKA";
-  
+
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
@@ -26,71 +25,100 @@ const Index = () => {
         clearInterval(timer);
       }
     }, 150);
-
     return () => clearInterval(timer);
   }, []);
 
-  const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL", "REMAC+"];
-  const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "PostgreSQL", "MongoDB", "Git", "VS Code", "Bash Scripting", "Jupyter"];
-  const additionalSkills = ["Vulnerability Assessment", "Network Security", "Unit Testing", "Test Case Design", "HTML/CSS", "SQLite"];
+  const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL", "Node.js"];
+  const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "PostgreSQL", "MongoDB", "Git", "Bash Scripting", "Cloudflare WAF"];
+  const additionalSkills = ["Vulnerability Assessment", "Network Security", "Unit Testing", "HTML/CSS", "SQLite", "React", "Flask"];
+  const bdSkills = ["Lead Generation", "Client Acquisition", "B2B Sales", "CRM Management", "Market Research", "Partnership Development", "EdTech Sales", "SaaS Operations", "Talent Acquisition", "Business Analytics", "Cold Outreach", "Startup Ecosystem"];
 
   const experiences = [
     {
       company: "OpenHire",
       position: "Business Development Associate (Internship)",
-      period: "Feb 2026 - Present",
-      highlight: "Managing high-impact client acquisition and partnership growth for OpenHire, a premier recruitment firm specialized in high-growth startups and large-scale businesses. Building high-performance sales and ops engines for EdTech & SaaS clients."
+      period: "Feb 2026 – Present",
+      highlight: "Managing high-impact client acquisition and partnership growth for a premier recruitment firm. Building high-performance sales & ops engines for EdTech & SaaS clients.",
+      tag: "ACTIVE"
+    },
+    {
+      company: "codeiam.club — Andhra University",
+      position: "Community Relations Lead",
+      period: "Apr 2025 – Present",
+      highlight: "Spearheading inter-club collaboration initiatives and fostering community engagement within codeiam.club.",
+      tag: "ACTIVE"
     },
     {
       company: "Caarya",
-      position: "Business Development Manager",
-      period: "Jan 2025 - Dec 2025",
-      highlight: "35% conversion rate in startup prospecting"
+      position: "Business Development Manager (Internship)",
+      period: "Jan 2025 – Dec 2025",
+      highlight: "Drove strategic partnerships connecting startups with top talent. Achieved 35% conversion rate & 50% increase in startup onboarding.",
+      tag: "COMPLETED"
     },
     {
-      company: "IIT Bhubaneswar", 
+      company: "codeiam.club — Andhra University",
+      position: "Cybersecurity Chapter Lead",
+      period: "Apr 2024 – Mar 2025",
+      highlight: "Led the Cybersecurity chapter, organised student summits and collaborated on the Codeiam Spark Nation Hackathon.",
+      tag: "COMPLETED"
+    },
+    {
+      company: "IIT Bhubaneswar",
       position: "Software Testing Intern",
-      period: "May 2024 - July 2024",
-      highlight: "Validated academic software systems"
+      period: "May 2024 – July 2024",
+      highlight: "Evaluated and validated academic software systems; designed test cases and supported automation documentation.",
+      tag: "COMPLETED"
     },
     {
       company: "Techno Hacks",
-      position: "Cybersecurity Intern", 
-      period: "July 2024 - Aug 2024",
-      highlight: "Advanced penetration testing & network analysis"
+      position: "Cybersecurity Intern",
+      period: "July 2024 – Aug 2024",
+      highlight: "Performed network sniffing (Wireshark), scanning (Nmap), and OSINT gathering (Maltego).",
+      tag: "COMPLETED"
     }
   ];
 
   const featuredProjects = [
     {
+      title: "APSRTC Service Management Platform",
+      description: "Full-stack web application digitising APSRTC transport service workflows. Deployed on Render with secure backend routes and Cloudflare WAF integration for enhanced security.",
+      impact: "CRITICAL",
+      tech: "Full-Stack • Render • Cloudflare WAF • Secure APIs",
+      tag: "4th Year Project"
+    },
+    {
       title: "Cybersweep",
-      description: "Advanced cybersecurity reconnaissance tool for comprehensive network analysis, vulnerability detection, and threat assessment with automated reporting capabilities",
+      description: "Advanced cybersecurity reconnaissance tool for comprehensive network analysis, vulnerability detection, and automated threat reporting.",
       impact: "CRITICAL",
       tech: "Python • Nmap • Security Analytics • Automation",
       github: "https://github.com/Abhiram-ops/Cybersweep"
     },
     {
-      title: "Network Security Assessment Tool",
-      description: "Automated vulnerability scanning and penetration testing framework with real-time threat detection and comprehensive security analysis",
-      impact: "CRITICAL",
-      tech: "Python • Nessus • OpenVAS • Custom Scripts"
+      title: "Web Application Vulnerability Scanner",
+      description: "Console-based tool detecting SQLi, XSS, and CSRF vulnerabilities. Automates OWASP Top 10 checks and generates detailed security reports.",
+      impact: "HIGH",
+      tech: "Python • Requests • BeautifulSoup • OWASP Top 10"
     },
     {
-      title: "Web Vulnerability Scanner",
-      description: "Advanced OWASP Top 10 detection tool with automated reporting and secure code analysis",
+      title: "LeadFinder – Smart Lead Scraping Tool",
+      description: "Standalone executable for automated lead generation. Extracts job metadata and contact info leveraging SerpAPI, BeautifulSoup, and Regex.",
       impact: "HIGH",
-      tech: "Python • OWASP • Burp Suite • Web Security"
+      tech: "Python • SerpAPI • Web Scraping • Automation"
     },
     {
-      title: "LeadFinder Tool",
-      description: "Automated lead generation with advanced scraping techniques and data analytics for business intelligence", 
-      impact: "HIGH",
-      tech: "Python • Web Scraping • Data Analytics • Automation"
+      title: "E-Attendance using QR & OTP",
+      description: "Secure dual-factor attendance system with QR code generation and OTP verification, eliminating proxy attendance.",
+      impact: "MEDIUM",
+      tech: "Flask • MySQL • QR Code • OTP • Python"
     }
   ];
 
+  const certifications = [
+    { name: "Google Cybersecurity Certificate", issuer: "Google · Coursera", year: "2025" },
+    { name: "Internshala Student Partner", issuer: "Internshala", year: "2024" }
+  ];
+
   const handleDownloadResume = () => {
-    // Direct download link from Google Drive
     const downloadUrl = 'https://drive.google.com/uc?export=download&id=1-C3LB0xbaFQYC0yxsQj-1s_fOldE74Z0';
     window.open(downloadUrl, '_blank');
   };
@@ -104,7 +132,7 @@ const Index = () => {
   };
 
   const sections = ["hero", "skills", "experience", "projects", "assessment", "contact"];
-  
+
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
     setShowSidebar(false);
@@ -119,16 +147,22 @@ const Index = () => {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const element = e.currentTarget;
     const { scrollTop, scrollHeight, clientHeight } = element;
-    
-    // Check if scrolled to bottom (with small threshold)
     if (scrollTop + clientHeight >= scrollHeight - 10) {
       const currentIndex = sections.indexOf(activeSection);
       if (currentIndex < sections.length - 1) {
-        setTimeout(() => {
-          handleNextSection();
-        }, 800);
+        setTimeout(() => { handleNextSection(); }, 800);
       }
     }
+  };
+
+  const tagColor = (tag: string) => tag === "ACTIVE"
+    ? "text-terminal-green-bright bg-terminal-green/10 border-terminal-green-bright"
+    : "text-terminal-green/50 bg-transparent border-terminal-green/20";
+
+  const impactColor = (impact: string) => {
+    if (impact === "CRITICAL") return "text-red-400 border-red-400/40 bg-red-400/10";
+    if (impact === "HIGH") return "text-yellow-400 border-yellow-400/40 bg-yellow-400/10";
+    return "text-terminal-green/60 border-terminal-green/20 bg-transparent";
   };
 
   const renderActiveSection = () => {
@@ -139,54 +173,54 @@ const Index = () => {
             <div className="text-center max-w-4xl mx-auto animate-fade-in w-full">
               <div className="mb-6 sm:mb-8">
                 <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 glitch-text font-mono break-words">
-                  {typedText}
-                  <span className="animate-blink">|</span>
+                  {typedText}<span className="animate-blink">|</span>
                 </h1>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-terminal-green-bright mb-4 px-2">
-                  TECH-SAVVY COMPUTER SCIENCE STUDENT
+                <h2 className="text-base sm:text-lg md:text-xl font-bold text-terminal-green-bright mb-1 px-2 tracking-widest">
+                  GROWTH MANAGER @ OPENHIRE
                 </h2>
+                <p className="text-xs sm:text-sm text-terminal-green/60 mb-4 tracking-wider">
+                  B.Tech CSE · Andhra University · 2022–2026
+                </p>
                 <p className="text-xs sm:text-sm md:text-base text-terminal-green/80 mb-2 px-2">
-                  Specialized in <span className="text-terminal-green-bright">CYBERSECURITY</span> & <span className="text-terminal-green-bright">PENETRATION TESTING</span>
+                  Specialized in <span className="text-terminal-green-bright font-semibold">CYBERSECURITY</span> &amp; <span className="text-terminal-green-bright font-semibold">BUSINESS DEVELOPMENT</span>
                 </p>
-                <p className="text-xs sm:text-sm md:text-base text-terminal-green/80 mb-6 sm:mb-8 px-2">
-                  Ethical hacker | Security researcher | Code architect
+                <p className="text-xs sm:text-sm md:text-base text-terminal-green/70 mb-6 sm:mb-8 px-2">
+                  Ethical hacker · Security researcher · Sales &amp; Ops builder
                 </p>
-                
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-2">
-                  <div className="flex items-center gap-2 text-xs sm:text-sm">
-                    <MapPin className="w-4 h-4 flex-shrink-0" />
-                    <span className="break-words">Visakhapatnam, Andhra Pradesh</span>
+                <div className="flex flex-wrap gap-2 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-2">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-terminal-green/80">
+                    <MapPin className="w-3 h-3 flex-shrink-0" />
+                    <span>Visakhapatnam, AP</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs sm:text-sm">
-                    <Phone className="w-4 h-4 flex-shrink-0" />
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-terminal-green/80">
+                    <Phone className="w-3 h-3 flex-shrink-0" />
                     <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a>
                   </div>
-                  <div className="flex items-center gap-2 text-xs sm:text-sm">
-                    <Mail className="w-4 h-4 flex-shrink-0" />
-                    <a 
-                      href="mailto:lankaabhiram16@gmail.com" 
-                      className="hover:text-terminal-green-bright transition-colors cursor-pointer break-all"
-                    >
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-terminal-green/80">
+                    <Mail className="w-3 h-3 flex-shrink-0" />
+                    <a href="mailto:lankaabhiram16@gmail.com" className="hover:text-terminal-green-bright transition-colors break-all">
                       lankaabhiram16@gmail.com
                     </a>
                   </div>
                 </div>
+                <div className="flex flex-wrap justify-center gap-3 mb-8">
+                  <Button variant="terminal" size="lg" className="animate-terminal-glow"
+                    onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}>
+                    <Github className="w-4 h-4" /> GITHUB
+                  </Button>
+                  <Button variant="outline" size="lg"
+                    className="border-terminal-green/50 text-terminal-green hover:bg-terminal-green/10"
+                    onClick={() => window.open('https://www.linkedin.com/in/abhiram-lanka-1696a5306/', '_blank')}>
+                    <Linkedin className="w-4 h-4" /> LINKEDIN
+                  </Button>
+                  <Button variant="outline" size="lg"
+                    className="border-terminal-green/50 text-terminal-green hover:bg-terminal-green/10"
+                    onClick={handleDownloadResume}>
+                    <Download className="w-4 h-4" /> RESUME
+                  </Button>
+                </div>
               </div>
-              
-              <div className="flex justify-center mb-8">
-                <Button 
-                  variant="terminal" 
-                  size="lg" 
-                  className="animate-terminal-glow w-full sm:w-auto text-sm sm:text-base"
-                  onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
-                >
-                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
-                  GITHUB ACCESS
-                </Button>
-              </div>
-              
-              {/* Add padding at bottom to trigger scroll */}
-              <div className="h-64 sm:h-96"></div>
+              <div className="h-32"></div>
             </div>
           </section>
         );
@@ -195,55 +229,47 @@ const Index = () => {
         return (
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="CORE_EXPERTISE.SYS" className="mb-8 sm:mb-12">
-                <div className="grid md:grid-cols-2 gap-8">
+              <TerminalWindow title="SKILL_MATRIX.SYS" className="mb-6">
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
-                      <Shield className="w-5 h-5" />
-                      [SECURITY_ARSENAL]
+                    <h3 className="text-sm font-bold mb-3 text-terminal-green-bright flex items-center gap-2 uppercase tracking-widest">
+                      <Shield className="w-4 h-4" /> Security Arsenal
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {keySkills.map((skill) => (
-                        <SkillTag key={skill} skill={skill} />
-                      ))}
+                      {keySkills.map(s => <SkillTag key={s} skill={s} />)}
                     </div>
                   </div>
-                  
                   <div>
-                    <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
-                      <Code className="w-5 h-5" />
-                      [HACKING_TOOLS]
+                    <h3 className="text-sm font-bold mb-3 text-terminal-green-bright flex items-center gap-2 uppercase tracking-widest">
+                      <Code className="w-4 h-4" /> Tools &amp; Stack
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {tools.map((tool) => (
-                        <SkillTag key={tool} skill={tool} />
-                      ))}
+                      {tools.map(s => <SkillTag key={s} skill={s} />)}
                     </div>
                   </div>
                 </div>
-
-                <div className="mt-8">
-                  <h3 className="text-lg font-bold mb-4 text-terminal-green-bright flex items-center gap-2">
-                    <Brain className="w-5 h-5" />
-                    [ADDITIONAL_SKILLS]
+                <div className="mb-6">
+                  <h3 className="text-sm font-bold mb-3 text-terminal-green-bright flex items-center gap-2 uppercase tracking-widest">
+                    <Briefcase className="w-4 h-4" /> Business Development
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {additionalSkills.map((skill) => (
-                      <SkillTag key={skill} skill={skill} />
+                    {bdSkills.map(s => (
+                      <span key={s} className="px-2 py-1 text-xs border border-yellow-400/30 text-yellow-400/80 rounded font-mono hover:border-yellow-400/60 transition-colors">
+                        {s}
+                      </span>
                     ))}
                   </div>
                 </div>
-                
-                <div className="mt-8 p-4 border border-terminal-green/30 rounded bg-terminal-bg/50">
-                  <p className="text-sm text-terminal-green/80 italic">
-                    "Specialized in offensive security, vulnerability research, and secure code development. 
-                    Multiple internships in cybersecurity and software testing."
-                  </p>
+                <div>
+                  <h3 className="text-sm font-bold mb-3 text-terminal-green-bright flex items-center gap-2 uppercase tracking-widest">
+                    <Brain className="w-4 h-4" /> Additional Skills
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {additionalSkills.map(s => <SkillTag key={s} skill={s} />)}
+                  </div>
                 </div>
               </TerminalWindow>
-              
-              {/* Add padding at bottom to trigger scroll */}
-              <div className="h-64 sm:h-96"></div>
+              <div className="h-32"></div>
             </div>
           </section>
         );
@@ -251,29 +277,28 @@ const Index = () => {
       case "experience":
         return (
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
-            <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="RECENT_MISSIONS.LOG" className="mb-8 sm:mb-12">
-                <div className="space-y-4">
-                  {experiences.map((exp, index) => (
-                    <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-terminal-green/20 rounded gap-2">
-                      <div className="flex-1">
-                        <h3 className="font-bold text-terminal-green-bright text-sm sm:text-base">{exp.company}</h3>
-                        <p className="text-xs sm:text-sm text-terminal-green/80">{exp.position}</p>
+            <div className="max-w-4xl mx-auto w-full animate-fade-in">
+              <TerminalWindow title="MISSION_LOG.EXP" className="mb-6">
+                <div className="space-y-3">
+                  {experiences.map((exp, i) => (
+                    <div key={i} className="p-3 sm:p-4 border border-terminal-green/20 rounded hover:border-terminal-green/40 transition-colors">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="font-bold text-terminal-green-bright text-sm sm:text-base">{exp.company}</h3>
+                            <span className={`text-xs border px-2 py-0.5 rounded font-mono ${tagColor(exp.tag)}`}>{exp.tag}</span>
+                          </div>
+                          <p className="text-xs sm:text-sm text-terminal-green/70 font-mono">{exp.position}</p>
+                        </div>
+                        <p className="text-xs text-terminal-green/50 font-mono whitespace-nowrap">{exp.period}</p>
                       </div>
-                      <div className="sm:text-right">
-                        <p className="text-xs text-terminal-green/60">{exp.period}</p>
-                        <p className="text-xs sm:text-sm text-terminal-green">{exp.highlight}</p>
-                      </div>
+                      <p className="text-xs text-terminal-green/80 mt-1 leading-relaxed">{exp.highlight}</p>
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 text-center">
-                  <p className="text-xs sm:text-sm text-terminal-green/60 px-2">+ Detailed achievements & impact metrics in resume</p>
-                </div>
+                <p className="text-xs text-terminal-green/40 text-center mt-4 font-mono">+ Full impact metrics in resume</p>
               </TerminalWindow>
-              
-              {/* Add padding at bottom to trigger scroll */}
-              <div className="h-64 sm:h-96"></div>
+              <div className="h-32"></div>
             </div>
           </section>
         );
@@ -281,45 +306,34 @@ const Index = () => {
       case "projects":
         return (
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
-            <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="FEATURED_EXPLOITS.DIR" className="mb-8 sm:mb-12">
-                <div className="space-y-4">
-                  {featuredProjects.map((project, index) => (
-                    <div key={index} className="border border-terminal-green/30 p-3 sm:p-4 rounded hover:border-terminal-green/50 transition-colors">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1 flex-wrap">
-                            <h3 className="text-base sm:text-lg font-bold text-terminal-green-bright">{project.title}</h3>
-                            {project.github && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => window.open(project.github, '_blank')}
-                                className="h-6 w-6 p-0 text-terminal-green hover:text-terminal-green-bright flex-shrink-0"
-                              >
-                                <Github className="w-4 h-4" />
-                              </Button>
-                            )}
-                          </div>
-                          {project.tech && (
-                            <p className="text-xs text-terminal-green/60 mb-2 font-mono break-words">{project.tech}</p>
+            <div className="max-w-5xl mx-auto w-full animate-fade-in">
+              <TerminalWindow title="EXPLOIT_VAULT.DIR" className="mb-6">
+                <div className="space-y-3">
+                  {featuredProjects.map((p, i) => (
+                    <div key={i} className="border border-terminal-green/25 p-3 sm:p-4 rounded hover:border-terminal-green/50 transition-colors">
+                      <div className="flex items-start justify-between gap-2 mb-1 flex-wrap">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className="text-sm sm:text-base font-bold text-terminal-green-bright">{p.title}</h3>
+                          {p.github && (
+                            <button onClick={() => window.open(p.github, '_blank')}
+                              className="text-terminal-green hover:text-terminal-green-bright transition-colors">
+                              <Github className="w-4 h-4" />
+                            </button>
+                          )}
+                          {p.tag && (
+                            <span className="text-xs border border-yellow-400/40 text-yellow-400/80 px-2 py-0.5 rounded font-mono">{p.tag}</span>
                           )}
                         </div>
-                        <span className="text-xs text-terminal-green/60 bg-terminal-bg-light px-2 py-1 rounded self-start flex-shrink-0">
-                          {project.impact}
-                        </span>
+                        <span className={`text-xs border px-2 py-0.5 rounded font-mono flex-shrink-0 ${impactColor(p.impact)}`}>{p.impact}</span>
                       </div>
-                      <p className="text-xs sm:text-sm text-terminal-green/90">{project.description}</p>
+                      <p className="text-xs font-mono text-terminal-green/50 mb-1">{p.tech}</p>
+                      <p className="text-xs sm:text-sm text-terminal-green/85 leading-relaxed">{p.description}</p>
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 text-center">
-                  <p className="text-xs sm:text-sm text-terminal-green/60 px-2">+ Additional projects & technical details in full resume</p>
-                </div>
+                <p className="text-xs text-terminal-green/40 text-center mt-4 font-mono">+ More on GitHub</p>
               </TerminalWindow>
-              
-              {/* Add padding at bottom to trigger scroll */}
-              <div className="h-64 sm:h-96"></div>
+              <div className="h-32"></div>
             </div>
           </section>
         );
@@ -327,112 +341,111 @@ const Index = () => {
       case "assessment":
         return (
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
-            <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-8 sm:mb-12">
-                <div className="text-center space-y-4 sm:space-y-6 px-2">
-                  <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                    <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright" />
-                    <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright" />
-                    <Code className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright" />
-                  </div>
-                  
-                  <h3 className="text-xl sm:text-2xl font-bold text-terminal-green-bright mb-4 font-sans">
-                    WHY CHOOSE ME?
-                  </h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-                    <div className="p-3 sm:p-4 border border-terminal-green/30 rounded">
-                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">SECURITY FIRST</h4>
-                      <p className="text-xs sm:text-sm text-terminal-green/80">
-                        Hands-on experience with penetration testing, vulnerability assessment, and OWASP methodologies
-                      </p>
-                    </div>
-                    
-                    <div className="p-3 sm:p-4 border border-terminal-green/30 rounded">
-                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">PROVEN RESULTS</h4>
-                      <p className="text-xs sm:text-sm text-terminal-green/80">
-                        35% conversion rates, leadership roles, and recognition across cybersecurity & business domains
-                      </p>
+            <div className="max-w-4xl mx-auto w-full animate-fade-in">
+              <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-6">
+                <div className="space-y-5">
+                  <div>
+                    <h3 className="text-xs font-bold text-terminal-green-bright uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <Award className="w-4 h-4" /> Certifications
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-2">
+                      {certifications.map((c, i) => (
+                        <div key={i} className="flex items-center gap-3 p-3 border border-terminal-green/20 rounded bg-terminal-bg/50 hover:border-terminal-green/40 transition-colors">
+                          <Shield className="w-5 h-5 text-terminal-green-bright flex-shrink-0" />
+                          <div>
+                            <p className="text-xs sm:text-sm font-bold text-terminal-green-bright">{c.name}</p>
+                            <p className="text-xs text-terminal-green/50 font-mono">{c.issuer} · {c.year}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  
-                  <div className="bg-terminal-bg-light p-4 sm:p-6 rounded border border-terminal-green">
-                    <p className="text-base sm:text-lg text-terminal-green-bright mb-3 sm:mb-4">
-                      🎯 <strong>Ready to secure your next project?</strong>
-                    </p>
-                    <p className="text-xs sm:text-sm text-terminal-green/90 mb-4 sm:mb-6">
-                      This portfolio shows just a glimpse. My full resume contains detailed project breakdowns, 
-                      technical achievements, certifications, and quantified impact metrics that demonstrate 
-                      my value as a cybersecurity professional.
-                    </p>
-                    
-                    <Button 
-                      variant="terminal" 
-                      size="lg" 
-                      onClick={handleDownloadResume}
-                      className="animate-terminal-glow w-full sm:w-auto text-xs sm:text-sm"
-                    >
-                      <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-                      <span className="truncate">ACCESS FULL INTEL - DOWNLOAD RESUME</span>
+                  <div>
+                    <h3 className="text-xs font-bold text-terminal-green-bright uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <Brain className="w-4 h-4" /> Leadership &amp; Recognition
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-2 text-xs text-terminal-green/80">
+                      {[
+                        "Cybersecurity Chapter Lead — codeIAM Club",
+                        "Organising Committee — Codeiam Spark Nation Hackathon",
+                        "Attendee — BSides Vizag 2025 Cybersecurity Conference",
+                        "Volunteer — ABVP Republic Day 2024 (AU United Club recognition)",
+                        "2nd Prize — School-Level Science Exhibition",
+                        "Internshala Student Partner Certified"
+                      ].map((a, i) => (
+                        <div key={i} className="flex items-start gap-2 p-2 border border-terminal-green/15 rounded">
+                          <span className="text-terminal-green-bright mt-0.5">»</span>
+                          <span>{a}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <div className="p-3 border border-terminal-green/30 rounded">
+                      <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">Security First</h4>
+                      <p className="text-xs text-terminal-green/75">Hands-on experience with penetration testing, vulnerability assessment, and OWASP methodologies.</p>
+                    </div>
+                    <div className="p-3 border border-terminal-green/30 rounded">
+                      <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">Proven Results</h4>
+                      <p className="text-xs text-terminal-green/75">35% conversion rates, 50% onboarding uplift, and recognition across cybersecurity &amp; BD domains.</p>
+                    </div>
+                  </div>
+                  <div className="bg-terminal-bg-light p-4 rounded border border-terminal-green text-center">
+                    <p className="text-sm text-terminal-green-bright mb-3 font-semibold">🎯 Ready to contribute?</p>
+                    <Button variant="terminal" size="lg" onClick={handleDownloadResume} className="animate-terminal-glow w-full sm:w-auto">
+                      <Download className="w-4 h-4" /> DOWNLOAD FULL RESUME
                     </Button>
                   </div>
                 </div>
               </TerminalWindow>
-              
-                {/* Add padding at bottom to trigger scroll */}
-                <div className="h-64 sm:h-96"></div>
-              </div>
-            </section>
-          );
+              <div className="h-32"></div>
+            </div>
+          </section>
+        );
 
       case "contact":
         return (
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
-            <div className="max-w-6xl mx-auto w-full animate-fade-in">
-              <TerminalWindow title="SECURE_CHANNEL.COMM" className="mb-8 sm:mb-12">
-                <div className="text-center space-y-4 sm:space-y-6 px-2">
-                  <h3 className="text-xl sm:text-2xl font-bold text-terminal-green-bright mb-4 sm:mb-6">
+            <div className="max-w-4xl mx-auto w-full animate-fade-in">
+              <TerminalWindow title="SECURE_CHANNEL.COMM" className="mb-6">
+                <div className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-terminal-green-bright text-center tracking-widest">
                     ESTABLISH SECURE CONNECTION
                   </h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                    <div className="p-4 sm:p-6 border border-terminal-green/30 rounded bg-terminal-bg/50">
-                      <Github className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright mx-auto mb-3 sm:mb-4" />
-                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">CODE REPOSITORY</h4>
-                      <p className="text-xs sm:text-sm text-terminal-green/80 mb-3 sm:mb-4">
-                        Access my secure development environment and project archives
-                      </p>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
-                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full sm:w-auto text-xs sm:text-sm"
-                      >
-                        GITHUB ACCESS
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 transition-colors">
+                      <Github className="w-7 h-7 text-terminal-green-bright mx-auto mb-2" />
+                      <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">GitHub</h4>
+                      <Button variant="outline" size="sm" onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
+                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full text-xs mt-1">
+                        VIEW REPOS
                       </Button>
                     </div>
-                    
-                    <div className="p-4 sm:p-6 border border-terminal-green/30 rounded bg-terminal-bg/50">
-                      <Download className="w-6 h-6 sm:w-8 sm:h-8 text-terminal-green-bright mx-auto mb-3 sm:mb-4" />
-                      <h4 className="font-bold text-terminal-green-bright mb-2 text-sm sm:text-base">INTELLIGENCE REPORT</h4>
-                      <p className="text-xs sm:text-sm text-terminal-green/80 mb-3 sm:mb-4">
-                        Download comprehensive analysis of capabilities and achievements
-                      </p>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={handleDownloadResume}
-                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full sm:w-auto text-xs sm:text-sm"
-                      >
-                        DOWNLOAD RESUME
+                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 transition-colors">
+                      <Linkedin className="w-7 h-7 text-terminal-green-bright mx-auto mb-2" />
+                      <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">LinkedIn</h4>
+                      <Button variant="outline" size="sm"
+                        onClick={() => window.open('https://www.linkedin.com/in/abhiram-lanka-1696a5306/', '_blank')}
+                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full text-xs mt-1">
+                        CONNECT
+                      </Button>
+                    </div>
+                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 transition-colors">
+                      <Download className="w-7 h-7 text-terminal-green-bright mx-auto mb-2" />
+                      <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">Resume</h4>
+                      <Button variant="outline" size="sm" onClick={handleDownloadResume}
+                        className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full text-xs mt-1">
+                        DOWNLOAD
                       </Button>
                     </div>
                   </div>
-                  
-                  <div className="mt-6 sm:mt-8 p-3 sm:p-4 border border-terminal-green/30 rounded bg-terminal-bg-light">
-                    <p className="text-xs sm:text-sm text-terminal-green/90 break-words">
-                      <strong>DIRECT COMMUNICATION CHANNELS:</strong><br />
-                      📧 <a href="mailto:lankaabhiram16@gmail.com" className="hover:text-terminal-green-bright transition-colors break-all">lankaabhiram16@gmail.com</a><br className="sm:hidden" /> | 📞 <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a><br className="sm:hidden" /> | 📍 Visakhapatnam, AP
+                  <div className="p-3 border border-terminal-green/25 rounded bg-terminal-bg-light text-center">
+                    <p className="text-xs text-terminal-green/80 font-mono">
+                      📧 <a href="mailto:lankaabhiram16@gmail.com" className="hover:text-terminal-green-bright transition-colors">lankaabhiram16@gmail.com</a>
+                      &nbsp;·&nbsp;
+                      📞 <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a>
+                      &nbsp;·&nbsp;
+                      📍 Visakhapatnam, AP
                     </p>
                   </div>
                 </div>
@@ -445,59 +458,31 @@ const Index = () => {
         return (
           <section className="min-h-screen flex items-center justify-center px-4 relative z-10">
             <div className="text-center">
-              <h1 className="text-4xl font-bold mb-4 text-terminal-green-bright">
-                SELECT A SECTION
-              </h1>
-              <p className="text-terminal-green/80">Choose a security module from the sidebar to proceed.</p>
+              <h1 className="text-4xl font-bold mb-4 text-terminal-green-bright">SELECT A SECTION</h1>
+              <p className="text-terminal-green/70">Choose a module from the sidebar.</p>
             </div>
           </section>
         );
     }
   };
 
-  // Lock Screen Component
   if (!isUnlocked && !isAnimating) {
     return (
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center">
         <MatrixBackground />
-        
         <div className="relative z-10 text-center max-w-md mx-auto px-4">
-          {/* Letter/Envelope UI */}
           <div className="bg-terminal-bg-light border-2 border-terminal-green rounded-lg p-6 md:p-8 shadow-2xl">
             <div className="mb-6">
-              {/* Envelope/Letter Icon */}
-              <div className="w-24 h-16 mx-auto mb-4 border-2 border-terminal-green rounded relative">
-                <div className="absolute top-2 left-2 right-2 bottom-2 border border-terminal-green/50 rounded"></div>
-                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                  <Lock className="w-8 h-8 text-terminal-green-bright animate-pulse" />
-                </div>
+              <div className="w-20 h-20 mx-auto mb-4 border-2 border-terminal-green rounded-full flex items-center justify-center">
+                <Lock className="w-8 h-8 text-terminal-green-bright animate-pulse" />
               </div>
-              
-              <h1 className="text-xl md:text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">
-                CLASSIFIED ACCESS
-              </h1>
-              <p className="text-terminal-green/80 text-sm mb-4 md:mb-6">
-                Security credentials required
-              </p>
+              <h1 className="text-xl md:text-2xl font-bold text-terminal-green-bright mb-2 glitch-text">CLASSIFIED ACCESS</h1>
+              <p className="text-terminal-green/70 text-sm mb-2">Security credentials required</p>
             </div>
-            
-            <div className="text-center mb-6">
-              <p className="text-terminal-green-bright font-bold mb-4">
-                UNLOCK TO PROCEED
-              </p>
-              <p className="text-xs text-terminal-green/60 mb-6">
-                Click the lock to access ABHIRAM's portfolio
-              </p>
-            </div>
-            
-            <Button
-              onClick={handleUnlock}
-              variant="terminal"
-              size="lg"
-              className="w-full animate-terminal-glow"
-            >
-              <Unlock className="w-5 h-5 mr-2" />
-              GRANT ACCESS
+            <p className="text-terminal-green-bright font-bold text-sm mb-2">UNLOCK TO PROCEED</p>
+            <p className="text-xs text-terminal-green/50 mb-6">Click the lock to access ABHIRAM's portfolio</p>
+            <Button onClick={handleUnlock} variant="terminal" size="lg" className="w-full animate-terminal-glow">
+              <Unlock className="w-5 h-5 mr-2" /> GRANT ACCESS
             </Button>
           </div>
         </div>
@@ -505,137 +490,52 @@ const Index = () => {
     );
   }
 
-  // High-End Cybersecurity Animation Screen
   if (isAnimating) {
     return (
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
         <MatrixBackground />
-        
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-terminal-green/10 to-transparent animate-pulse"></div>
-          <div className="grid grid-cols-12 gap-1 h-full opacity-30">
-            {Array.from({length: 144}).map((_, i) => (
-              <div 
-                key={i} 
-                className="border border-terminal-green/20 animate-pulse"
-                style={{animationDelay: `${i * 0.05}s`}}
-              ></div>
-            ))}
-          </div>
-        </div>
-        
         <div className="relative z-10 text-center max-w-2xl px-4">
-          {/* Central Scanning Interface */}
           <div className="relative mb-8">
-            {/* Outer Scanning Ring */}
-            <div className="w-64 h-64 mx-auto relative">
+            <div className="w-48 h-48 mx-auto relative">
               <div className="absolute inset-0 border-2 border-terminal-green/30 rounded-full animate-spin"></div>
-              <div className="absolute inset-4 border border-terminal-green/50 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '3s'}}></div>
-              <div className="absolute inset-8 border border-terminal-green/70 rounded-full animate-spin" style={{animationDuration: '2s'}}></div>
-              
-              {/* Central Shield Icon */}
+              <div className="absolute inset-4 border border-terminal-green/50 rounded-full animate-spin" style={{animationDirection:'reverse',animationDuration:'3s'}}></div>
+              <div className="absolute inset-8 border border-terminal-green/70 rounded-full animate-spin" style={{animationDuration:'2s'}}></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <Shield className="w-20 h-20 text-terminal-green-bright animate-pulse" />
-                  <div className="absolute inset-0 w-20 h-20 border-2 border-terminal-green-bright rounded-lg animate-ping"></div>
-                </div>
-              </div>
-              
-              {/* Scanning Lines */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-1 h-32 bg-gradient-to-t from-transparent via-terminal-green-bright to-transparent rotate-45 animate-spin origin-bottom" style={{animationDuration: '1.5s'}}></div>
+                <Shield className="w-16 h-16 text-terminal-green-bright animate-pulse" />
               </div>
             </div>
           </div>
-          
-          {/* Status Display */}
-          <div className="space-y-4 mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-terminal-green-bright glitch-text">
-              QUANTUM DECRYPTION IN PROGRESS
-            </h2>
-            <div className="space-y-2">
-              <p className="text-terminal-green-bright font-mono">
-                » Bypassing quantum encryption barriers...
-              </p>
-              <p className="text-terminal-green font-mono">
-                » Authenticating biometric signatures...
-              </p>
-              <p className="text-terminal-green/80 font-mono">
-                » Establishing secure neural link...
-              </p>
-            </div>
-          </div>
-          
-          {/* Progress Indicators */}
-          <div className="space-y-4">
-            <div className="flex justify-center space-x-2">
-              {[...Array(8)].map((_, i) => (
-                <div 
-                  key={i}
-                  className="w-3 h-3 border border-terminal-green-bright rounded-full"
-                  style={{
-                    backgroundColor: i < 6 ? 'hsl(var(--terminal-green-bright))' : 'transparent',
-                    animationDelay: `${i * 0.2}s`
-                  }}
-                ></div>
-              ))}
-            </div>
-            
-            {/* Scrolling Code Effect */}
-            <div className="h-32 overflow-hidden font-mono text-xs text-terminal-green/60">
-              <div className="animate-scroll-up space-y-1">
-                <p>0x7FF3A2B1: AUTHENTICATION_PROTOCOL_INITIALIZED</p>
-                <p>0x7FF3A2B2: QUANTUM_KEY_EXCHANGE_ACTIVE</p>
-                <p>0x7FF3A2B3: NEURAL_HANDSHAKE_ESTABLISHED</p>
-                <p>0x7FF3A2B4: BIOMETRIC_VERIFICATION_COMPLETE</p>
-                <p>0x7FF3A2B5: ENCRYPTION_LAYER_1_BYPASSED</p>
-                <p>0x7FF3A2B6: ENCRYPTION_LAYER_2_BYPASSED</p>
-                <p>0x7FF3A2B7: FIREWALL_NEGOTIATION_SUCCESS</p>
-                <p>0x7FF3A2B8: ACCESS_GRANTED_PORTFOLIO_UNLOCKED</p>
-              </div>
-            </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-terminal-green-bright glitch-text mb-4">DECRYPTING ACCESS</h2>
+          <div className="space-y-2 font-mono text-sm">
+            <p className="text-terminal-green-bright">» Authenticating credentials...</p>
+            <p className="text-terminal-green">» Establishing secure session...</p>
+            <p className="text-terminal-green/70">» Loading portfolio data...</p>
           </div>
         </div>
       </div>
     );
   }
 
-  // Main Portfolio Content with Sidebar
   return (
     <SidebarProvider defaultOpen={showSidebar}>
       <div className="min-h-screen flex w-full bg-terminal-bg">
         <MatrixBackground />
-        
         {showSidebar && (
-          <CyberSidebar 
-            activeSection={activeSection} 
-            onSectionChange={handleSectionChange} 
-          />
+          <CyberSidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
         )}
-        
         <main className="flex-1 relative">
-          {/* Back to sidebar button when section is active */}
           {activeSection && !showSidebar && (
             <button
-              onClick={() => {
-                setShowSidebar(true);
-                setActiveSection("");
-              }}
-              className="fixed top-4 left-4 z-50 bg-terminal-bg border border-terminal-green/30 
-                       rounded p-2 text-terminal-green-bright hover:bg-terminal-green/10 
-                       transition-all duration-300 shadow-lg"
+              onClick={() => { setShowSidebar(true); setActiveSection(""); }}
+              className="fixed top-4 left-4 z-50 bg-terminal-bg border border-terminal-green/30 rounded p-2 text-terminal-green-bright hover:bg-terminal-green/10 transition-all duration-300 shadow-lg"
               aria-label="Back to menu"
             >
               <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           )}
-          
-          {/* Matrix Rain Overlay with 50% opacity */}
-          <div className="fixed inset-0 z-5" style={{ opacity: 0.5 }}>
+          <div className="fixed inset-0 z-5" style={{opacity:0.4}}>
             <MatrixBackground />
           </div>
-          
           {renderActiveSection()}
         </main>
       </div>
