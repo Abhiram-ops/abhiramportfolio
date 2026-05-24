@@ -44,7 +44,7 @@ const Index = () => {
     {
       company: "Caarya",
       position: "Business Development Associate",
-      period: "Feb 2025 - Present",
+      period: "Jan 2025 - Dec 2025",
       highlight: "35% conversion rate in startup prospecting"
     },
     {
