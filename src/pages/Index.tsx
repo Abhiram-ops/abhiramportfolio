@@ -4,7 +4,7 @@ import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
-import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Award, Briefcase, Linkedin } from "lucide-react";
+import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Award, Briefcase, Linkedin, FileText } from "lucide-react";
 
 const Index = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
