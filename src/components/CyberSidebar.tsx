@@ -196,7 +196,7 @@ export function CyberSidebar({ activeSection, onSectionChange, isOpen, onOpenCha
               <span className="text-xs font-mono">GITHUB ACCESS</span>
             </a>
             <button
-              onClick={() => window.open('https://drive.google.com/uc?export=download&id=1-C3LB0xbaFQYC0yxsQj-1s_fOldE74Z0', '_blank')}
+              onClick={() => { const a = document.createElement('a'); a.href = '/abhiramportfolio/Abhiram_Lanka_Resume.docx'; a.download = 'Abhiram_Lanka_Resume.docx'; a.click(); }}
               className="flex items-center p-3 rounded-md hover:bg-terminal-green/10 border border-transparent hover:border-terminal-green/30 text-terminal-green transition-all duration-300 w-full text-left"
             >
               <Download className="w-4 h-4 mr-3" />

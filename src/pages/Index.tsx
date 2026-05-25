@@ -160,8 +160,11 @@ const Index = () => {
   ];
 
   const handleDownloadResume = () => {
-    const downloadUrl = 'https://drive.google.com/uc?export=download&id=1-C3LB0xbaFQYC0yxsQj-1s_fOldE74Z0';
-    window.open(downloadUrl, '_blank');
+    const downloadUrl = '/abhiramportfolio/Abhiram_Lanka_Resume.docx';
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = 'Abhiram_Lanka_Resume.docx';
+    a.click();
   };
 
   const handleUnlock = () => {
