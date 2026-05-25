@@ -138,7 +138,7 @@ export function CyberSidebar({ activeSection, onSectionChange, isOpen, onOpenCha
         </div>
 
         {/* Navigation */}
-        <div className="flex-1 overflow-y-auto px-2 py-2">
+        <div className="flex-1 overflow-y-auto scrollbar-none px-2 py-2" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <p className="text-terminal-green-bright text-xs font-bold px-2 py-2 tracking-widest">
             NAVIGATION MODULES
           </p>

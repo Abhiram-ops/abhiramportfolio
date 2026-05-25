@@ -34,7 +34,7 @@ const Index = () => {
     if (!showGreeting) return;
     setGreetProgress(0);
     const start = Date.now();
-    const duration = 3500;
+    const duration = 10000;
     const interval = setInterval(() => {
       const elapsed = Date.now() - start;
       const pct = Math.min((elapsed / duration) * 100, 100);
@@ -555,13 +555,17 @@ const Index = () => {
           </h1>
           <div className="w-full h-px bg-terminal-green/30 mb-5" />
 
-          <div className="space-y-2 text-sm mb-8 text-terminal-green/85 leading-relaxed">
-            <p><span className="text-terminal-green-bright mr-2">›</span>Final year B.Tech CSE @ Andhra University, Visakhapatnam</p>
-            <p><span className="text-terminal-green-bright mr-2">›</span>Cybersecurity Researcher &amp; Business Development Strategist</p>
-            <p><span className="text-terminal-green-bright mr-2">›</span>Currently: <span className="text-terminal-green-bright font-semibold">Business Development @ OpenHire</span></p>
-            <p><span className="text-terminal-green-bright mr-2">›</span>Expertise: Penetration Testing · B2B Sales · Full-Stack Dev</p>
-            <p><span className="text-terminal-green-bright mr-2">›</span>6+ months across security research &amp; BD domains</p>
-          </div>
+          <p className="text-sm text-terminal-green/85 leading-relaxed mb-8">
+            I'm a final-year B.Tech CSE student at Andhra University, Visakhapatnam, with a dual focus on
+            <span className="text-terminal-green-bright font-semibold"> Cybersecurity</span> and
+            <span className="text-terminal-green-bright font-semibold"> Business Development</span>.
+            Currently driving growth as a Business Development Associate at OpenHire, I've previously worked
+            with Caarya and IIT Bhubaneswar — building pipelines, closing deals, and scaling operations.
+            On the security side, I lead the Cybersecurity chapter at codeIAM Club and have hands-on experience
+            in penetration testing, vulnerability assessment, and OWASP methodologies. I build tools that automate
+            the boring parts and spend the rest of my time figuring out how systems — technical or human — can be
+            made to work better.
+          </p>
 
           <div className="mb-2">
             <div className="flex justify-between text-xs mb-1">
