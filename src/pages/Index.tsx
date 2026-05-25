@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
@@ -23,7 +23,7 @@ const Index = () => {
   const heroSubtitles = [
     "Ethical Hacker. Security Researcher.",
     "Business Development Builder.",
-    "Research Author — CityBus Live.",
+    "Research Author · CityBus Live.",
     "Final Year CSE · Andhra University.",
   ];
 
@@ -114,42 +114,42 @@ const Index = () => {
     {
       company: "OpenHire",
       position: "Business Development Associate (Internship)",
-      period: "Feb 2026 – Present",
+      period: "Feb 2026 - Present",
       highlight: "Managing high-impact client acquisition and partnership growth for a premier recruitment firm. Building high-performance sales & ops engines for EdTech & SaaS clients.",
       tag: "ACTIVE"
     },
     {
-      company: "codeiam.club — Andhra University",
+      company: "codeiam.club, Andhra University",
       position: "Community Relations Lead",
-      period: "Apr 2025 – Present",
+      period: "Apr 2025 - Present",
       highlight: "Spearheading inter-club collaboration initiatives and fostering community engagement within codeiam.club.",
       tag: "ACTIVE"
     },
     {
       company: "Caarya",
       position: "Business Development Manager (Internship)",
-      period: "Jan 2025 – Dec 2025",
+      period: "Jan 2025 - Dec 2025",
       highlight: "Drove strategic partnerships connecting startups with top talent. Achieved 35% conversion rate & 50% increase in startup onboarding.",
       tag: "COMPLETED"
     },
     {
-      company: "codeiam.club — Andhra University",
+      company: "codeiam.club, Andhra University",
       position: "Cybersecurity Chapter Lead",
-      period: "Apr 2024 – Mar 2025",
+      period: "Apr 2024 - Mar 2025",
       highlight: "Led the Cybersecurity chapter, organised student summits and collaborated on the Codeiam Spark Nation Hackathon.",
       tag: "COMPLETED"
     },
     {
       company: "IIT Bhubaneswar",
       position: "Software Testing Intern",
-      period: "May 2024 – July 2024",
+      period: "May 2024 - July 2024",
       highlight: "Evaluated and validated academic software systems; designed test cases and supported automation documentation.",
       tag: "COMPLETED"
     },
     {
       company: "Techno Hacks",
       position: "Cybersecurity Intern",
-      period: "July 2024 – Aug 2024",
+      period: "July 2024 - Aug 2024",
       highlight: "Performed network sniffing (Wireshark), scanning (Nmap), and OSINT gathering (Maltego).",
       tag: "COMPLETED"
     }
@@ -157,8 +157,8 @@ const Index = () => {
 
   const featuredProjects = [
     {
-      title: "CityBus Live — Real-Time Urban Bus Tracking",
-      description: "Most city bus routes in India have no live tracking — not because the tech doesn't exist, but because dedicated GPS hardware costs ₹15,000 per vehicle. CityBus Live eliminates this by repurposing the driver's own smartphone as the tracker, delivering real-time ETAs to commuters via a PWA at zero hardware cost. Deployed live on 4 Visakhapatnam routes: 287ms avg latency, 500+ concurrent sessions, 99.8% traffic reduction vs HTTP polling. Research paper submitted to ASIANCON 2026 & ICST 2026.",
+      title: "CityBus Live: Real-Time Urban Bus Tracking",
+      description: "Most city bus routes in India have no live tracking, not because the tech doesn't exist, but because dedicated GPS hardware costs ₹15,000 per vehicle. CityBus Live eliminates this by repurposing the driver's own smartphone as the tracker, delivering real-time ETAs to commuters via a PWA at zero hardware cost. Deployed live on 4 Visakhapatnam routes: 287ms avg latency, 500+ concurrent sessions, 99.8% traffic reduction vs HTTP polling. Research paper submitted to ASIANCON 2026 & ICST 2026.",
       impact: "CRITICAL",
       tech: "Flask-SocketIO • WebSocket • Azure App Service • PostgreSQL • Leaflet.js • HTML5 GPS • PWA",
       tag: "Research Paper",
@@ -166,7 +166,7 @@ const Index = () => {
     },
     {
       title: "Cybersweep",
-      description: "A Python-powered recon toolkit that automates the early stages of a pentest — scans ports, fingerprints services, and assembles a structured threat report in a single run. Point it at a target and it does the boring parts so you can focus on the interesting ones.",
+      description: "A Python-powered recon toolkit that automates the early stages of a pentest: scans ports, fingerprints services, and assembles a structured threat report in a single run. Point it at a target and it does the boring parts so you can focus on the interesting ones.",
       impact: "CRITICAL",
       tech: "Python • Nmap • Security Analytics • Automation",
       github: "https://github.com/Abhiram-ops/Cybersweep",
@@ -174,14 +174,14 @@ const Index = () => {
     },
     {
       title: "Web Application Vulnerability Scanner",
-      description: "Point it at a target and it systematically checks for the most common web vulnerabilities across the OWASP Top 10, then generates a detailed remediation report — no manual probing needed. Console-based tool detecting SQLi, XSS, and CSRF vulnerabilities.",
+      description: "Point it at a target and it systematically checks for the most common web vulnerabilities across the OWASP Top 10, then generates a detailed remediation report, no manual probing needed. Console-based tool detecting SQLi, XSS, and CSRF vulnerabilities.",
       impact: "HIGH",
       tech: "Python • Requests • BeautifulSoup • OWASP Top 10",
       metrics: ["OWASP Top 10 coverage", "SQLi / XSS / CSRF detection", "Auto-remediation reports"]
     },
     {
-      title: "LeadFinder – Smart Lead Scraping Tool",
-      description: "A sales automation tool packaged as a standalone .exe that scrapes job boards and company pages to extract validated leads — built to cut manual prospecting time to near zero. Leverages SerpAPI, BeautifulSoup, and Regex for precise extraction.",
+      title: "LeadFinder: Smart Lead Scraping Tool",
+      description: "A sales automation tool packaged as a standalone .exe that scrapes job boards and company pages to extract validated leads, built to cut manual prospecting time to near zero. Leverages SerpAPI, BeautifulSoup, and Regex for precise extraction.",
       impact: "HIGH",
       tech: "Python • SerpAPI • Web Scraping • Automation",
       metrics: ["Standalone .exe", "Multi-source scraping", "Validated contact extraction"]
@@ -297,7 +297,7 @@ const Index = () => {
                 </div>
 
                 <p className="text-xs sm:text-sm text-terminal-green/60 mb-4 tracking-wider">
-                  B.Tech CSE · Andhra University · 2022–2026
+                  B.Tech CSE · Andhra University · 2022-2026
                 </p>
                 <p className="text-xs sm:text-sm md:text-base text-terminal-green/80 mb-2 px-2">
                   Specialized in <span className="text-terminal-green-bright font-semibold">CYBERSECURITY</span> &amp; <span className="text-terminal-green-bright font-semibold">BUSINESS DEVELOPMENT</span>
@@ -587,7 +587,7 @@ const Index = () => {
                             <p className="text-xs sm:text-sm font-bold text-terminal-green-bright flex-1 leading-snug">{pub.title}</p>
                             <span className="text-xs border border-yellow-400/40 text-yellow-400/80 px-2 py-0.5 rounded font-mono shrink-0">{pub.status}</span>
                           </div>
-                          <p className="text-xs text-terminal-green/70 font-mono">{pub.venue} — {pub.full}</p>
+                          <p className="text-xs text-terminal-green/70 font-mono">{pub.venue} · {pub.full}</p>
                           <p className="text-xs text-terminal-green/40 font-mono mt-0.5">{pub.id} · First Author: Abhiram Lanka</p>
                         </div>
                       ))}
@@ -599,10 +599,10 @@ const Index = () => {
                     </h3>
                     <div className="grid sm:grid-cols-2 gap-2 text-xs text-terminal-green/80">
                       {[
-                        "Cybersecurity Chapter Lead — codeIAM Club",
-                        "Organising Committee — Codeiam Spark Nation Hackathon",
-                        "Attendee — BSides Vizag 2025 Cybersecurity Conference",
-                        "1st Prize — ABVP Event (Andhra University, 2024)"
+                        "Cybersecurity Chapter Lead, codeIAM Club",
+                        "Organising Committee, Codeiam Spark Nation Hackathon",
+                        "Attendee, BSides Vizag 2025 Cybersecurity Conference",
+                        "1st Prize, ABVP Event (Andhra University, 2024)"
                       ].map((a, i) => (
                         <div key={i} className="flex items-start gap-2 p-2 border border-terminal-green/15 rounded hover:border-terminal-green/30 transition-colors">
                           <span className="text-terminal-green-bright mt-0.5">»</span>
@@ -752,7 +752,7 @@ const Index = () => {
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
         <MatrixBackground />
         <div className="relative z-10 max-w-2xl mx-auto px-6 w-full font-mono">
-          <p className="text-terminal-green-bright text-sm mb-1 animate-fade-in">» ACCESS GRANTED — CLEARANCE: ADMIN</p>
+          <p className="text-terminal-green-bright text-sm mb-1 animate-fade-in">» ACCESS GRANTED | CLEARANCE: ADMIN</p>
           <p className="text-terminal-green/60 text-sm mb-7">» WELCOME, OPERATOR. IDENTITY CONFIRMED.</p>
 
           <h1 className="text-4xl sm:text-5xl font-bold text-terminal-green-bright mb-2 glitch-text tracking-wider">
@@ -765,11 +765,11 @@ const Index = () => {
             <span className="text-terminal-green-bright font-semibold"> Cybersecurity</span> and
             <span className="text-terminal-green-bright font-semibold"> Business Development</span>.
             Currently driving growth as a Business Development Associate at OpenHire, I've previously worked
-            with Caarya and IIT Bhubaneswar — building pipelines, closing deals, and scaling operations.
-            On the technical side, I built <span className="text-terminal-green-bright font-semibold">CityBus Live</span> — a hardware-free real-time bus tracking system
-            deployed on live Visakhapatnam routes — with a research paper submitted to two international conferences (ASIANCON 2026 &amp; ICST 2026).
+            with Caarya and IIT Bhubaneswar, building pipelines, closing deals, and scaling operations.
+            On the technical side, I built <span className="text-terminal-green-bright font-semibold">CityBus Live</span>, a hardware-free real-time bus tracking system
+            deployed on live Visakhapatnam routes, with a research paper submitted to two international conferences (ASIANCON 2026 &amp; ICST 2026).
             I lead the Cybersecurity chapter at codeIAM Club, hold hands-on experience in penetration testing and OWASP methodologies,
-            and build tools that make systems — technical or human — work better.
+            and build tools that make systems (technical or human) work better.
           </p>
 
           <div className="mb-2">
