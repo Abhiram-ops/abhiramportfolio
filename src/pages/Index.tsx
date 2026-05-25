@@ -103,11 +103,11 @@ const Index = () => {
 
   const featuredProjects = [
     {
-      title: "APSRTC Service Management Platform",
-      description: "Full-stack web application digitising APSRTC transport service workflows. Deployed on Render with secure backend routes and Cloudflare WAF integration for enhanced security.",
+      title: "CityBus Live — Real-Time Urban Bus Tracking",
+      description: "Hardware-free city bus tracking framework deployed live on 4 Visakhapatnam routes. Repurposes drivers' smartphones via HTML5 Geolocation API + WebSocket Pub/Sub — zero hardware cost per bus. 287ms avg latency, 500+ concurrent sessions, 99.8% traffic reduction vs HTTP polling. Research paper submitted to ASIANCON 2026 & ICST 2026 (under review).",
       impact: "CRITICAL",
-      tech: "Full-Stack • Render • Cloudflare WAF • Secure APIs",
-      tag: "4th Year Project"
+      tech: "Flask-SocketIO • WebSocket • Azure App Service • PostgreSQL • Leaflet.js • HTML5 GPS • PWA",
+      tag: "Research Paper"
     },
     {
       title: "Cybersweep",
@@ -138,7 +138,25 @@ const Index = () => {
 
   const certifications = [
     { name: "Google Cybersecurity Certificate", issuer: "Google · Coursera", year: "In Progress", status: "ACTIVE" },
-    { name: "REMAC+", issuer: "Udemy", year: "2026", status: "COMPLETED" }
+    { name: "REMAC+", issuer: "Udemy", year: "2026", status: "COMPLETED" },
+    { name: "Business Ethics", issuer: "NPTEL · IIT", year: "2026", status: "COMPLETED" }
+  ];
+
+  const researchPapers = [
+    {
+      title: "CityBus Live: A Hardware-Free, Universally Deployable Real-Time Urban Bus Tracking Framework Using Browser-Based GPS and WebSocket Communication",
+      venue: "ASIANCON 2026",
+      full: "Asia Conference on Innovation in Emerging Technologies",
+      id: "Paper ID: 1595",
+      status: "UNDER REVIEW"
+    },
+    {
+      title: "CityBus Live: A Hardware-Free, Universally Deployable Real-Time Urban Bus Tracking Framework Using Browser-Based GPS and WebSocket Communication",
+      venue: "ICST 2026",
+      full: "International Conference on Intelligent Computing & Sustainable Technologies",
+      id: "Paper ID: 232",
+      status: "UNDER REVIEW"
+    }
   ];
 
   const handleDownloadResume = () => {
@@ -390,6 +408,24 @@ const Index = () => {
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-terminal-green-bright uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <FileText className="w-4 h-4" /> Research Publications
+                    </h3>
+                    <div className="space-y-2">
+                      {researchPapers.map((pub, i) => (
+                        <div key={i} className="p-3 border border-terminal-green/20 rounded bg-terminal-bg/50 hover:border-terminal-green/40 transition-colors">
+                          <div className="flex items-start justify-between gap-2 flex-wrap mb-1">
+                            <p className="text-xs sm:text-sm font-bold text-terminal-green-bright flex-1 leading-snug">{pub.title}</p>
+                            <span className="text-xs border border-yellow-400/40 text-yellow-400/80 px-2 py-0.5 rounded font-mono shrink-0">{pub.status}</span>
+                          </div>
+                          <p className="text-xs text-terminal-green/70 font-mono">{pub.venue} — {pub.full}</p>
+                          <p className="text-xs text-terminal-green/40 font-mono mt-0.5">{pub.id} · First Author: Abhiram Lanka</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xs font-bold text-terminal-green-bright uppercase tracking-widest mb-3 flex items-center gap-2">
                       <Brain className="w-4 h-4" /> Leadership &amp; Recognition
                     </h3>
                     <div className="grid sm:grid-cols-2 gap-2 text-xs text-terminal-green/80">
@@ -561,10 +597,10 @@ const Index = () => {
             <span className="text-terminal-green-bright font-semibold"> Business Development</span>.
             Currently driving growth as a Business Development Associate at OpenHire, I've previously worked
             with Caarya and IIT Bhubaneswar — building pipelines, closing deals, and scaling operations.
-            On the security side, I lead the Cybersecurity chapter at codeIAM Club and have hands-on experience
-            in penetration testing, vulnerability assessment, and OWASP methodologies. I build tools that automate
-            the boring parts and spend the rest of my time figuring out how systems — technical or human — can be
-            made to work better.
+            On the technical side, I built <span className="text-terminal-green-bright font-semibold">CityBus Live</span> — a hardware-free real-time bus tracking system
+            deployed on live Visakhapatnam routes — with a research paper submitted to two international conferences (ASIANCON 2026 &amp; ICST 2026).
+            I lead the Cybersecurity chapter at codeIAM Club, hold hands-on experience in penetration testing and OWASP methodologies,
+            and build tools that make systems — technical or human — work better.
           </p>
 
           <div className="mb-2">
