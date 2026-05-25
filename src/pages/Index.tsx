@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
-import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Menu, Award, Briefcase, Linkedin } from "lucide-react";
+import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Award, Briefcase, Linkedin } from "lucide-react";
 
 const Index = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [activeSection, setActiveSection] = useState("hero");
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(false);
+  const [greetProgress, setGreetProgress] = useState(0);
   const [typedText, setTypedText] = useState("");
   const fullText = "ABHIRAM LANKA";
 
@@ -27,6 +28,28 @@ const Index = () => {
     }, 150);
     return () => clearInterval(timer);
   }, []);
+
+  // Greeting progress bar auto-advance
+  useEffect(() => {
+    if (!showGreeting) return;
+    setGreetProgress(0);
+    const start = Date.now();
+    const duration = 3500;
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - start;
+      const pct = Math.min((elapsed / duration) * 100, 100);
+      setGreetProgress(Math.round(pct));
+      if (pct >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setShowGreeting(false);
+          setActiveSection("hero");
+          setShowSidebar(true);
+        }, 300);
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }, [showGreeting]);
 
   const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL", "Node.js"];
   const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "PostgreSQL", "MongoDB", "Git", "Bash Scripting", "Cloudflare WAF"];
@@ -114,8 +137,8 @@ const Index = () => {
   ];
 
   const certifications = [
-    { name: "Google Cybersecurity Certificate", issuer: "Google · Coursera", year: "2025" },
-    { name: "Internshala Student Partner", issuer: "Internshala", year: "2024" }
+    { name: "Google Cybersecurity Certificate", issuer: "Google · Coursera", year: "In Progress", status: "ACTIVE" },
+    { name: "REMAC+", issuer: "Udemy", year: "2026", status: "COMPLETED" }
   ];
 
   const handleDownloadResume = () => {
@@ -128,6 +151,7 @@ const Index = () => {
     setTimeout(() => {
       setIsUnlocked(true);
       setIsAnimating(false);
+      setShowGreeting(true);
     }, 2000);
   };
 
@@ -351,10 +375,14 @@ const Index = () => {
                     <div className="grid sm:grid-cols-2 gap-2">
                       {certifications.map((c, i) => (
                         <div key={i} className="flex items-center gap-3 p-3 border border-terminal-green/20 rounded bg-terminal-bg/50 hover:border-terminal-green/40 transition-colors">
-                          <Shield className="w-5 h-5 text-terminal-green-bright flex-shrink-0" />
+                          <Shield className={`w-5 h-5 flex-shrink-0 ${c.status === 'ACTIVE' ? 'text-yellow-400' : 'text-terminal-green-bright'}`} />
                           <div>
                             <p className="text-xs sm:text-sm font-bold text-terminal-green-bright">{c.name}</p>
-                            <p className="text-xs text-terminal-green/50 font-mono">{c.issuer} · {c.year}</p>
+                            <p className="text-xs text-terminal-green/50 font-mono">
+                              {c.issuer} · {c.status === 'ACTIVE'
+                                ? <span className="text-yellow-400 font-bold">IN PROGRESS</span>
+                                : c.year}
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -369,9 +397,7 @@ const Index = () => {
                         "Cybersecurity Chapter Lead — codeIAM Club",
                         "Organising Committee — Codeiam Spark Nation Hackathon",
                         "Attendee — BSides Vizag 2025 Cybersecurity Conference",
-                        "Volunteer — ABVP Republic Day 2024 (AU United Club recognition)",
-                        "2nd Prize — School-Level Science Exhibition",
-                        "Internshala Student Partner Certified"
+                        "1st Prize — ABVP Event (Andhra University, 2024)"
                       ].map((a, i) => (
                         <div key={i} className="flex items-start gap-2 p-2 border border-terminal-green/15 rounded">
                           <span className="text-terminal-green-bright mt-0.5">»</span>
@@ -516,30 +542,61 @@ const Index = () => {
     );
   }
 
-  return (
-    <SidebarProvider defaultOpen={showSidebar}>
-      <div className="min-h-screen flex w-full bg-terminal-bg">
-        <div style={{pointerEvents:'none'}}><MatrixBackground /></div>
-        {showSidebar && (
-          <CyberSidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
-        )}
-        <main className="flex-1 relative">
-          {activeSection && !showSidebar && (
-            <button
-              onClick={() => { setShowSidebar(true); setActiveSection(""); }}
-              className="fixed top-4 left-4 z-50 bg-terminal-bg border border-terminal-green/30 rounded p-2 text-terminal-green-bright hover:bg-terminal-green/10 transition-all duration-300 shadow-lg"
-              aria-label="Back to menu"
-            >
-              <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
-          )}
-          <div className="fixed inset-0 z-5" style={{opacity:0.4, pointerEvents:'none'}}>
-            <MatrixBackground />
+  if (showGreeting) {
+    return (
+      <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
+        <MatrixBackground />
+        <div className="relative z-10 max-w-2xl mx-auto px-6 w-full font-mono">
+          <p className="text-terminal-green-bright text-sm mb-1 animate-fade-in">» ACCESS GRANTED — CLEARANCE: ADMIN</p>
+          <p className="text-terminal-green/60 text-sm mb-7">» WELCOME, OPERATOR. IDENTITY CONFIRMED.</p>
+
+          <h1 className="text-4xl sm:text-5xl font-bold text-terminal-green-bright mb-2 glitch-text tracking-wider">
+            ABHIRAM LANKA
+          </h1>
+          <div className="w-full h-px bg-terminal-green/30 mb-5" />
+
+          <div className="space-y-2 text-sm mb-8 text-terminal-green/85 leading-relaxed">
+            <p><span className="text-terminal-green-bright mr-2">›</span>Final year B.Tech CSE @ Andhra University, Visakhapatnam</p>
+            <p><span className="text-terminal-green-bright mr-2">›</span>Cybersecurity Researcher &amp; Business Development Strategist</p>
+            <p><span className="text-terminal-green-bright mr-2">›</span>Currently: <span className="text-terminal-green-bright font-semibold">Business Development @ OpenHire</span></p>
+            <p><span className="text-terminal-green-bright mr-2">›</span>Expertise: Penetration Testing · B2B Sales · Full-Stack Dev</p>
+            <p><span className="text-terminal-green-bright mr-2">›</span>6+ months across security research &amp; BD domains</p>
           </div>
-          {renderActiveSection()}
-        </main>
+
+          <div className="mb-2">
+            <div className="flex justify-between text-xs mb-1">
+              <span className="text-terminal-green/60">LOADING PORTFOLIO</span>
+              <span className="text-terminal-green-bright">{greetProgress}%</span>
+            </div>
+            <div className="w-full h-2 bg-terminal-green/10 rounded-full border border-terminal-green/20 overflow-hidden">
+              <div
+                className="h-full bg-terminal-green-bright rounded-full"
+                style={{ width: `${greetProgress}%`, transition: "width 0.1s linear" }}
+              />
+            </div>
+          </div>
+          <p className="text-xs text-terminal-green/40">» INITIALIZING NAVIGATION MODULES...</p>
+        </div>
       </div>
-    </SidebarProvider>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex w-full bg-terminal-bg">
+      <div style={{pointerEvents:'none'}}><MatrixBackground /></div>
+      <CyberSidebar
+        activeSection={activeSection}
+        onSectionChange={handleSectionChange}
+        isOpen={showSidebar}
+        onOpenChange={setShowSidebar}
+      />
+      <main className="flex-1 relative">
+        <div className="fixed inset-0 z-5" style={{opacity:0.4, pointerEvents:'none'}}>
+          <MatrixBackground />
+        </div>
+        {renderActiveSection()}
+      </main>
+    </div>
   );
 };
 
