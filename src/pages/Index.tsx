@@ -4,7 +4,7 @@ import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
-import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Award, Briefcase, Linkedin, FileText } from "lucide-react";
+import { Github, Download, Mail, Phone, MapPin, Shield, Code, Brain, Lock, Unlock, Award, Briefcase, Linkedin, FileText, ChevronDown, ChevronUp, ExternalLink, Zap } from "lucide-react";
 
 const Index = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -14,8 +14,20 @@ const Index = () => {
   const [showGreeting, setShowGreeting] = useState(false);
   const [greetProgress, setGreetProgress] = useState(0);
   const [typedText, setTypedText] = useState("");
+  const [skillsAnimated, setSkillsAnimated] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const [heroSubIdx, setHeroSubIdx] = useState(0);
+  const [heroSubTyped, setHeroSubTyped] = useState("");
   const fullText = "ABHIRAM LANKA";
 
+  const heroSubtitles = [
+    "Ethical Hacker. Security Researcher.",
+    "Business Development Builder.",
+    "Research Author — CityBus Live.",
+    "Final Year CSE · Andhra University.",
+  ];
+
+  // Type name on mount
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
@@ -28,6 +40,25 @@ const Index = () => {
     }, 150);
     return () => clearInterval(timer);
   }, []);
+
+  // Cycle hero subtitles with typewriter effect
+  useEffect(() => {
+    const target = heroSubtitles[heroSubIdx];
+    let i = 0;
+    setHeroSubTyped("");
+    const typeInterval = setInterval(() => {
+      if (i <= target.length) {
+        setHeroSubTyped(target.slice(0, i));
+        i++;
+      } else {
+        clearInterval(typeInterval);
+      }
+    }, 55);
+    const holdTimeout = setTimeout(() => {
+      setHeroSubIdx(prev => (prev + 1) % heroSubtitles.length);
+    }, target.length * 55 + 2800);
+    return () => { clearInterval(typeInterval); clearTimeout(holdTimeout); };
+  }, [heroSubIdx]);
 
   // Greeting progress bar auto-advance
   useEffect(() => {
@@ -50,6 +81,29 @@ const Index = () => {
     }, 50);
     return () => clearInterval(interval);
   }, [showGreeting]);
+
+  // Animate skill bars when skills section becomes active
+  useEffect(() => {
+    if (activeSection === "skills") {
+      setSkillsAnimated(false);
+      const t = setTimeout(() => setSkillsAnimated(true), 200);
+      return () => clearTimeout(t);
+    }
+  }, [activeSection]);
+
+  // Reset expanded project on section change
+  useEffect(() => { setExpandedProject(null); }, [activeSection]);
+
+  const skillLevels = [
+    { name: "Cybersecurity & Pen Testing", level: 88, color: "#00ff41", cat: "sec" },
+    { name: "Python", level: 85, color: "#00ff41", cat: "sec" },
+    { name: "Web App Security (OWASP)", level: 84, color: "#f87171", cat: "sec" },
+    { name: "Network Security & OSINT", level: 82, color: "#00ff41", cat: "sec" },
+    { name: "B2B Sales & Lead Generation", level: 90, color: "#facc15", cat: "bd" },
+    { name: "Client Acquisition / CRM", level: 85, color: "#facc15", cat: "bd" },
+    { name: "JavaScript / React", level: 74, color: "#60a5fa", cat: "dev" },
+    { name: "SQL & Databases", level: 78, color: "#60a5fa", cat: "dev" },
+  ];
 
   const keySkills = ["Python", "Java", "Cybersecurity", "Penetration Testing", "OWASP", "Kali Linux", "JavaScript", "SQL", "Node.js"];
   const tools = ["Wireshark", "Nmap", "Maltego", "MySQL", "PostgreSQL", "MongoDB", "Git", "Bash Scripting", "Cloudflare WAF"];
@@ -104,35 +158,40 @@ const Index = () => {
   const featuredProjects = [
     {
       title: "CityBus Live — Real-Time Urban Bus Tracking",
-      description: "Hardware-free city bus tracking framework deployed live on 4 Visakhapatnam routes. Repurposes drivers' smartphones via HTML5 Geolocation API + WebSocket Pub/Sub — zero hardware cost per bus. 287ms avg latency, 500+ concurrent sessions, 99.8% traffic reduction vs HTTP polling. Research paper submitted to ASIANCON 2026 & ICST 2026 (under review).",
+      description: "Most city bus routes in India have no live tracking — not because the tech doesn't exist, but because dedicated GPS hardware costs ₹15,000 per vehicle. CityBus Live eliminates this by repurposing the driver's own smartphone as the tracker, delivering real-time ETAs to commuters via a PWA at zero hardware cost. Deployed live on 4 Visakhapatnam routes: 287ms avg latency, 500+ concurrent sessions, 99.8% traffic reduction vs HTTP polling. Research paper submitted to ASIANCON 2026 & ICST 2026.",
       impact: "CRITICAL",
       tech: "Flask-SocketIO • WebSocket • Azure App Service • PostgreSQL • Leaflet.js • HTML5 GPS • PWA",
-      tag: "Research Paper"
+      tag: "Research Paper",
+      metrics: ["287ms avg latency", "500+ concurrent users", "4 live routes", "99.8% traffic reduction"]
     },
     {
       title: "Cybersweep",
-      description: "Advanced cybersecurity reconnaissance tool for comprehensive network analysis, vulnerability detection, and automated threat reporting.",
+      description: "A Python-powered recon toolkit that automates the early stages of a pentest — scans ports, fingerprints services, and assembles a structured threat report in a single run. Point it at a target and it does the boring parts so you can focus on the interesting ones.",
       impact: "CRITICAL",
       tech: "Python • Nmap • Security Analytics • Automation",
-      github: "https://github.com/Abhiram-ops/Cybersweep"
+      github: "https://github.com/Abhiram-ops/Cybersweep",
+      metrics: ["Automated recon pipeline", "Multi-vector scanning", "Structured threat reports"]
     },
     {
       title: "Web Application Vulnerability Scanner",
-      description: "Console-based tool detecting SQLi, XSS, and CSRF vulnerabilities. Automates OWASP Top 10 checks and generates detailed security reports.",
+      description: "Point it at a target and it systematically checks for the most common web vulnerabilities across the OWASP Top 10, then generates a detailed remediation report — no manual probing needed. Console-based tool detecting SQLi, XSS, and CSRF vulnerabilities.",
       impact: "HIGH",
-      tech: "Python • Requests • BeautifulSoup • OWASP Top 10"
+      tech: "Python • Requests • BeautifulSoup • OWASP Top 10",
+      metrics: ["OWASP Top 10 coverage", "SQLi / XSS / CSRF detection", "Auto-remediation reports"]
     },
     {
       title: "LeadFinder – Smart Lead Scraping Tool",
-      description: "Standalone executable for automated lead generation. Extracts job metadata and contact info leveraging SerpAPI, BeautifulSoup, and Regex.",
+      description: "A sales automation tool packaged as a standalone .exe that scrapes job boards and company pages to extract validated leads — built to cut manual prospecting time to near zero. Leverages SerpAPI, BeautifulSoup, and Regex for precise extraction.",
       impact: "HIGH",
-      tech: "Python • SerpAPI • Web Scraping • Automation"
+      tech: "Python • SerpAPI • Web Scraping • Automation",
+      metrics: ["Standalone .exe", "Multi-source scraping", "Validated contact extraction"]
     },
     {
       title: "E-Attendance using QR & OTP",
-      description: "Secure dual-factor attendance system with QR code generation and OTP verification, eliminating proxy attendance.",
+      description: "Built to close the proxy attendance loophole: students must scan a time-limited QR code and verify a one-time PIN before attendance is logged, making impersonation practically impossible. Dual-factor system with QR generation and OTP verification.",
       impact: "MEDIUM",
-      tech: "Flask • MySQL • QR Code • OTP • Python"
+      tech: "Flask • MySQL • QR Code • OTP • Python",
+      metrics: ["Time-limited QR codes", "OTP dual-factor", "Zero proxy loophole"]
     }
   ];
 
@@ -217,21 +276,33 @@ const Index = () => {
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="text-center max-w-4xl mx-auto animate-fade-in w-full">
               <div className="mb-6 sm:mb-8">
+                {/* Status badge */}
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-terminal-green-bright opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-terminal-green-bright"></span>
+                  </span>
+                  <span className="text-xs font-mono text-terminal-green/60 tracking-widest">SYSTEM ONLINE · CLEARANCE: ADMIN</span>
+                </div>
+
                 <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 glitch-text font-mono break-words">
                   {typedText}<span className="animate-blink">|</span>
                 </h1>
-                <h2 className="text-base sm:text-lg md:text-xl font-bold text-terminal-green-bright mb-1 px-2 tracking-widest">
-                  GROWTH MANAGER @ OPENHIRE
-                </h2>
+
+                {/* Cycling subtitle typewriter */}
+                <div className="h-7 flex items-center justify-center mb-2">
+                  <h2 className="text-base sm:text-lg md:text-xl font-bold text-terminal-green-bright px-2 tracking-widest font-mono">
+                    {heroSubTyped}<span className="animate-blink opacity-70">_</span>
+                  </h2>
+                </div>
+
                 <p className="text-xs sm:text-sm text-terminal-green/60 mb-4 tracking-wider">
                   B.Tech CSE · Andhra University · 2022–2026
                 </p>
                 <p className="text-xs sm:text-sm md:text-base text-terminal-green/80 mb-2 px-2">
                   Specialized in <span className="text-terminal-green-bright font-semibold">CYBERSECURITY</span> &amp; <span className="text-terminal-green-bright font-semibold">BUSINESS DEVELOPMENT</span>
                 </p>
-                <p className="text-xs sm:text-sm md:text-base text-terminal-green/70 mb-6 sm:mb-8 px-2">
-                  Ethical hacker · Security researcher · Sales &amp; Ops builder
-                </p>
+
                 <div className="flex flex-wrap gap-2 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-2">
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-terminal-green/80">
                     <MapPin className="w-3 h-3 flex-shrink-0" />
@@ -248,7 +319,22 @@ const Index = () => {
                     </a>
                   </div>
                 </div>
-                <div className="flex flex-wrap justify-center gap-3 mb-8">
+
+                {/* Quick stat chips */}
+                <div className="flex flex-wrap gap-2 justify-center mb-6">
+                  {[
+                    { icon: "🛡️", label: "Pen Tester" },
+                    { icon: "📄", label: "2 Research Papers" },
+                    { icon: "🚌", label: "CityBus Live" },
+                    { icon: "📈", label: "35% Conv. Rate" },
+                  ].map((chip, i) => (
+                    <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 text-xs border border-terminal-green/30 rounded-full text-terminal-green/80 bg-terminal-green/5 hover:border-terminal-green/60 hover:text-terminal-green-bright transition-all duration-200 cursor-default font-mono">
+                      <span>{chip.icon}</span>{chip.label}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-2 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-2">
                   <Button variant="terminal" size="lg" className="animate-terminal-glow"
                     onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}>
                     <Github className="w-4 h-4" /> GITHUB
@@ -275,7 +361,39 @@ const Index = () => {
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-6xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="SKILL_MATRIX.SYS" className="mb-6">
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
+
+                {/* Animated skill bars */}
+                <div className="mb-6">
+                  <h3 className="text-xs font-bold text-terminal-green-bright uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <Zap className="w-4 h-4" /> Proficiency Levels
+                  </h3>
+                  <div className="space-y-3">
+                    {skillLevels.map((skill, i) => (
+                      <div key={skill.name}>
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-xs font-mono text-terminal-green/80">{skill.name}</span>
+                          <span className="text-xs font-mono font-bold" style={{ color: skill.color }}>
+                            {skillsAnimated ? `${skill.level}%` : "0%"}
+                          </span>
+                        </div>
+                        <div className="relative h-2 bg-terminal-green/10 rounded-full overflow-hidden border border-terminal-green/20">
+                          <div
+                            className="absolute left-0 top-0 h-full rounded-full transition-all ease-out"
+                            style={{
+                              width: skillsAnimated ? `${skill.level}%` : "0%",
+                              backgroundColor: skill.color,
+                              boxShadow: skillsAnimated ? `0 0 8px ${skill.color}80` : "none",
+                              transitionDuration: "1200ms",
+                              transitionDelay: `${i * 100}ms`,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-terminal-green/20 pt-5 grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <h3 className="text-sm font-bold mb-3 text-terminal-green-bright flex items-center gap-2 uppercase tracking-widest">
                       <Shield className="w-4 h-4" /> Security Arsenal
@@ -299,7 +417,7 @@ const Index = () => {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {bdSkills.map(s => (
-                      <span key={s} className="px-2 py-1 text-xs border border-yellow-400/30 text-yellow-400/80 rounded font-mono hover:border-yellow-400/60 transition-colors">
+                      <span key={s} className="px-2 py-1 text-xs border border-yellow-400/30 text-yellow-400/80 rounded font-mono hover:border-yellow-400/60 hover:bg-yellow-400/5 transition-all duration-200 cursor-default">
                         {s}
                       </span>
                     ))}
@@ -326,11 +444,11 @@ const Index = () => {
               <TerminalWindow title="MISSION_LOG.EXP" className="mb-6">
                 <div className="space-y-3">
                   {experiences.map((exp, i) => (
-                    <div key={i} className="p-3 sm:p-4 border border-terminal-green/20 rounded hover:border-terminal-green/40 transition-colors">
+                    <div key={i} className="p-3 sm:p-4 border border-terminal-green/20 rounded hover:border-terminal-green/50 hover:bg-terminal-green/3 transition-all duration-200 group">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="font-bold text-terminal-green-bright text-sm sm:text-base">{exp.company}</h3>
+                            <h3 className="font-bold text-terminal-green-bright text-sm sm:text-base group-hover:text-white transition-colors">{exp.company}</h3>
                             <span className={`text-xs border px-2 py-0.5 rounded font-mono ${tagColor(exp.tag)}`}>{exp.tag}</span>
                           </div>
                           <p className="text-xs sm:text-sm text-terminal-green/70 font-mono">{exp.position}</p>
@@ -353,28 +471,77 @@ const Index = () => {
           <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
             <div className="max-w-5xl mx-auto w-full animate-fade-in">
               <TerminalWindow title="EXPLOIT_VAULT.DIR" className="mb-6">
-                <div className="space-y-3">
-                  {featuredProjects.map((p, i) => (
-                    <div key={i} className="border border-terminal-green/25 p-3 sm:p-4 rounded hover:border-terminal-green/50 transition-colors">
-                      <div className="flex items-start justify-between gap-2 mb-1 flex-wrap">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h3 className="text-sm sm:text-base font-bold text-terminal-green-bright">{p.title}</h3>
-                          {p.github && (
-                            <button onClick={() => window.open(p.github, '_blank')}
-                              className="text-terminal-green hover:text-terminal-green-bright transition-colors">
-                              <Github className="w-4 h-4" />
-                            </button>
+                <p className="text-xs text-terminal-green/40 font-mono mb-4">» CLICK ANY PROJECT TO EXPAND DETAILS</p>
+                <div className="space-y-2">
+                  {featuredProjects.map((p, i) => {
+                    const isExpanded = expandedProject === i;
+                    return (
+                      <div
+                        key={i}
+                        className={`border rounded transition-all duration-300 cursor-pointer select-none
+                          ${isExpanded
+                            ? "border-terminal-green/70 bg-terminal-green/5 shadow-lg shadow-terminal-green/10"
+                            : "border-terminal-green/25 hover:border-terminal-green/50 hover:bg-terminal-green/3"
+                          }`}
+                        onClick={() => setExpandedProject(isExpanded ? null : i)}
+                      >
+                        <div className="p-3 sm:p-4">
+                          <div className="flex items-start justify-between gap-2 mb-1 flex-wrap">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <h3 className={`text-sm sm:text-base font-bold transition-colors ${isExpanded ? "text-white" : "text-terminal-green-bright"}`}>{p.title}</h3>
+                              {p.github && (
+                                <button onClick={e => { e.stopPropagation(); window.open(p.github, '_blank'); }}
+                                  className="text-terminal-green hover:text-terminal-green-bright transition-colors" title="View source">
+                                  <Github className="w-4 h-4" />
+                                </button>
+                              )}
+                              {p.tag && (
+                                <span className="text-xs border border-yellow-400/40 text-yellow-400/80 px-2 py-0.5 rounded font-mono">{p.tag}</span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className={`text-xs border px-2 py-0.5 rounded font-mono flex-shrink-0 ${impactColor(p.impact)}`}>{p.impact}</span>
+                              {isExpanded
+                                ? <ChevronUp className="w-4 h-4 text-terminal-green/60 flex-shrink-0" />
+                                : <ChevronDown className="w-4 h-4 text-terminal-green/40 flex-shrink-0" />
+                              }
+                            </div>
+                          </div>
+                          <p className="text-xs font-mono text-terminal-green/50 mb-1">{p.tech}</p>
+
+                          {/* Collapsed hint */}
+                          {!isExpanded && (
+                            <p className="text-xs text-terminal-green/30 font-mono mt-1">[ CLICK TO EXPAND ]</p>
                           )}
-                          {p.tag && (
-                            <span className="text-xs border border-yellow-400/40 text-yellow-400/80 px-2 py-0.5 rounded font-mono">{p.tag}</span>
+
+                          {/* Expanded content */}
+                          {isExpanded && (
+                            <div className="mt-3 border-t border-terminal-green/20 pt-3 animate-fade-in">
+                              <p className="text-xs text-terminal-green/40 font-mono mb-2">» PROJECT_DETAILS.LOG</p>
+                              <p className="text-xs sm:text-sm text-terminal-green/90 leading-relaxed mb-3">{p.description}</p>
+                              {p.metrics && (
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                  {p.metrics.map((m, mi) => (
+                                    <span key={mi} className="text-xs px-2 py-1 border border-terminal-green/30 rounded font-mono text-terminal-green/70 bg-terminal-green/5">
+                                      ✓ {m}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                              {p.github && (
+                                <button
+                                  onClick={e => { e.stopPropagation(); window.open(p.github, '_blank'); }}
+                                  className="flex items-center gap-1.5 text-xs text-terminal-green-bright hover:underline font-mono transition-colors"
+                                >
+                                  <ExternalLink className="w-3 h-3" /> VIEW SOURCE CODE
+                                </button>
+                              )}
+                            </div>
                           )}
                         </div>
-                        <span className={`text-xs border px-2 py-0.5 rounded font-mono flex-shrink-0 ${impactColor(p.impact)}`}>{p.impact}</span>
                       </div>
-                      <p className="text-xs font-mono text-terminal-green/50 mb-1">{p.tech}</p>
-                      <p className="text-xs sm:text-sm text-terminal-green/85 leading-relaxed">{p.description}</p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 <p className="text-xs text-terminal-green/40 text-center mt-4 font-mono">+ More on GitHub</p>
               </TerminalWindow>
@@ -395,7 +562,7 @@ const Index = () => {
                     </h3>
                     <div className="grid sm:grid-cols-2 gap-2">
                       {certifications.map((c, i) => (
-                        <div key={i} className="flex items-center gap-3 p-3 border border-terminal-green/20 rounded bg-terminal-bg/50 hover:border-terminal-green/40 transition-colors">
+                        <div key={i} className="flex items-center gap-3 p-3 border border-terminal-green/20 rounded bg-terminal-bg/50 hover:border-terminal-green/40 hover:bg-terminal-green/3 transition-all duration-200">
                           <Shield className={`w-5 h-5 flex-shrink-0 ${c.status === 'ACTIVE' ? 'text-yellow-400' : 'text-terminal-green-bright'}`} />
                           <div>
                             <p className="text-xs sm:text-sm font-bold text-terminal-green-bright">{c.name}</p>
@@ -426,7 +593,6 @@ const Index = () => {
                       ))}
                     </div>
                   </div>
-
                   <div>
                     <h3 className="text-xs font-bold text-terminal-green-bright uppercase tracking-widest mb-3 flex items-center gap-2">
                       <Brain className="w-4 h-4" /> Leadership &amp; Recognition
@@ -438,7 +604,7 @@ const Index = () => {
                         "Attendee — BSides Vizag 2025 Cybersecurity Conference",
                         "1st Prize — ABVP Event (Andhra University, 2024)"
                       ].map((a, i) => (
-                        <div key={i} className="flex items-start gap-2 p-2 border border-terminal-green/15 rounded">
+                        <div key={i} className="flex items-start gap-2 p-2 border border-terminal-green/15 rounded hover:border-terminal-green/30 transition-colors">
                           <span className="text-terminal-green-bright mt-0.5">»</span>
                           <span>{a}</span>
                         </div>
@@ -446,11 +612,11 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-3">
-                    <div className="p-3 border border-terminal-green/30 rounded">
+                    <div className="p-3 border border-terminal-green/30 rounded hover:border-terminal-green/50 transition-colors">
                       <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">Security First</h4>
                       <p className="text-xs text-terminal-green/75">Hands-on experience with penetration testing, vulnerability assessment, and OWASP methodologies.</p>
                     </div>
-                    <div className="p-3 border border-terminal-green/30 rounded">
+                    <div className="p-3 border border-terminal-green/30 rounded hover:border-terminal-green/50 transition-colors">
                       <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">Proven Results</h4>
                       <p className="text-xs text-terminal-green/75">35% conversion rates, 50% onboarding uplift, and recognition across cybersecurity &amp; BD domains.</p>
                     </div>
@@ -478,16 +644,16 @@ const Index = () => {
                     ESTABLISH SECURE CONNECTION
                   </h3>
                   <div className="grid sm:grid-cols-3 gap-3">
-                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 transition-colors">
-                      <Github className="w-7 h-7 text-terminal-green-bright mx-auto mb-2" />
+                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 hover:bg-terminal-green/5 transition-all duration-200 group">
+                      <Github className="w-7 h-7 text-terminal-green-bright mx-auto mb-2 group-hover:scale-110 transition-transform" />
                       <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">GitHub</h4>
                       <Button variant="outline" size="sm" onClick={() => window.open('https://github.com/Abhiram-ops', '_blank')}
                         className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full text-xs mt-1">
                         VIEW REPOS
                       </Button>
                     </div>
-                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 transition-colors">
-                      <Linkedin className="w-7 h-7 text-terminal-green-bright mx-auto mb-2" />
+                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 hover:bg-terminal-green/5 transition-all duration-200 group">
+                      <Linkedin className="w-7 h-7 text-terminal-green-bright mx-auto mb-2 group-hover:scale-110 transition-transform" />
                       <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">LinkedIn</h4>
                       <Button variant="outline" size="sm"
                         onClick={() => window.open('https://www.linkedin.com/in/abhiram-lanka-1696a5306/', '_blank')}
@@ -495,8 +661,8 @@ const Index = () => {
                         CONNECT
                       </Button>
                     </div>
-                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 transition-colors">
-                      <Download className="w-7 h-7 text-terminal-green-bright mx-auto mb-2" />
+                    <div className="p-4 border border-terminal-green/30 rounded bg-terminal-bg/50 text-center hover:border-terminal-green/60 hover:bg-terminal-green/5 transition-all duration-200 group">
+                      <Download className="w-7 h-7 text-terminal-green-bright mx-auto mb-2 group-hover:scale-110 transition-transform" />
                       <h4 className="font-bold text-terminal-green-bright mb-1 text-xs uppercase tracking-wider">Resume</h4>
                       <Button variant="outline" size="sm" onClick={handleDownloadResume}
                         className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 w-full text-xs mt-1">
@@ -626,6 +792,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex w-full bg-terminal-bg">
+      {/* Scanline overlay */}
+      <div
+        className="fixed inset-0 z-50 pointer-events-none"
+        style={{
+          background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px)",
+        }}
+      />
       <div style={{pointerEvents:'none'}}><MatrixBackground /></div>
       <CyberSidebar
         activeSection={activeSection}
