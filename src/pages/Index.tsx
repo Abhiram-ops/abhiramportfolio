@@ -227,7 +227,7 @@ const Index = () => {
   ];
 
   const certifications = [
-    { name: "Google Cybersecurity Certificate", issuer: "Google · Coursera", year: "In Progress", status: "ACTIVE" },
+    { name: "Google Cybersecurity Certificate", issuer: "Google · Coursera", year: "2026", status: "COMPLETED" },
     { name: "REMAC+", issuer: "Udemy", year: "2026", status: "COMPLETED" },
     { name: "Business Ethics", issuer: "NPTEL · IIT", year: "2026", status: "COMPLETED" },
   ];
