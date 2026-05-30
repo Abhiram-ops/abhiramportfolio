@@ -269,7 +269,7 @@ const Index = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "REPLACE_WITH_WEB3FORMS_KEY",
+          access_key: "16986797-e39b-4def-bd80-0e66d9350a7b",
           name: formData.name, email: formData.email,
           phone: formData.phone, message: formData.message,
           subject: "Portfolio Contact from " + formData.name,
