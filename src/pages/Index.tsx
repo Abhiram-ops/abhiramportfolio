@@ -96,7 +96,7 @@ const Index = () => {
       setGreetProgress(Math.round(pct));
       if (pct >= 100) {
         clearInterval(iv);
-        setTimeout(() => { setShowGreeting(false); setActiveSection("hero"); setShowSidebar(true); }, 300);
+        setTimeout(() => { setShowGreeting(false); setActiveSection("hero"); }, 300);
       }
     }, 50);
     return () => clearInterval(iv);
@@ -111,6 +111,13 @@ const Index = () => {
   }, [activeSection]);
 
   useEffect(() => { setExpandedProject(null); setExpandedCap(null); }, [activeSection]);
+
+  // Auto-show sidebar 5s after portfolio unlocks (lets user enjoy the hero first)
+  useEffect(() => {
+    if (!isUnlocked || showGreeting) return;
+    const t = setTimeout(() => setShowSidebar(true), 5000);
+    return () => clearTimeout(t);
+  }, [isUnlocked, showGreeting]);
 
 
   /* ── Data ──────────────────────────────────────────────── */
