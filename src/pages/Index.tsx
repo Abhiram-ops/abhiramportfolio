@@ -54,6 +54,8 @@ const Index = () => {
   const [heroSubTyped, setHeroSubTyped] = useState("");
   const [cursor, setCursor] = useState({ x: -100, y: -100 });
   const [cursorBig, setCursorBig] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [formStatus, setFormStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
 
   const heroSubtitles = [
     "B.Tech CSE Graduate. Open to Opportunities.",
@@ -258,6 +260,27 @@ const Index = () => {
   };
   const sections = ["hero", "skills", "experience", "projects", "assessment", "contact"];
   const handleSectionChange = (s: string) => { setActiveSection(s); setShowSidebar(false); };
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    setFormStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "REPLACE_WITH_WEB3FORMS_KEY",
+          name: formData.name, email: formData.email,
+          phone: formData.phone, message: formData.message,
+          subject: "Portfolio Contact from " + formData.name,
+          from_name: "Abhiram Lanka Portfolio",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) { setFormStatus("sent"); setFormData({ name: "", email: "", phone: "", message: "" }); }
+      else { setFormStatus("error"); }
+    } catch { setFormStatus("error"); }
+  };
   const handleNextSection = () => {
     const i = sections.indexOf(activeSection);
     if (i < sections.length - 1) setActiveSection(sections[i + 1]);
@@ -725,6 +748,30 @@ const Index = () => {
             </div>
           </div>
 
+          {/* GitHub Activity */}
+          <div className="mb-6 border border-terminal-green/18 rounded-lg p-3 sm:p-4" style={{ background: "rgba(0,255,255,0.02)" }}>
+            <p className="text-xs font-mono text-terminal-green/35 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <Github className="w-3.5 h-3.5" /> GitHub Activity
+            </p>
+            <img src="https://ghchart.rshah.org/00ffff/Abhiram-ops" alt="GitHub Contributions"
+              className="w-full rounded mb-3" style={{ opacity: 0.8, filter: "brightness(1.1) saturate(1.3)" }}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <img src="https://github-readme-stats.vercel.app/api?username=Abhiram-ops&show_icons=true&hide_border=true&bg_color=00000000&title_color=00ffff&icon_color=00ffff&text_color=7fffff&rank_icon=github"
+                alt="GitHub Stats" className="w-full rounded" style={{ opacity: 0.88 }}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Abhiram-ops&layout=compact&hide_border=true&bg_color=00000000&title_color=00ffff&text_color=7fffff"
+                alt="Top Languages" className="w-full rounded" style={{ opacity: 0.88 }}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            </div>
+            <div className="flex justify-end mt-2">
+              <button onClick={() => window.open("https://github.com/Abhiram-ops", "_blank")}
+                className="text-xs font-mono text-terminal-green/40 hover:text-terminal-green-bright transition-colors flex items-center gap-1">
+                <ExternalLink className="w-3 h-3" /> View all repositories
+              </button>
+            </div>
+          </div>
+
           <div className="p-4 sm:p-5 border border-terminal-green rounded-lg text-center" style={{ background: "rgba(0,255,255,0.03)" }}>
             <p className="text-sm font-body text-terminal-green-bright mb-3 font-semibold">Ready to contribute?</p>
             <button onClick={handleDownloadResume}
@@ -743,34 +790,94 @@ const Index = () => {
       <div className="max-w-3xl mx-auto w-full animate-fade-in">
         <TerminalWindow title="SECURE_CHANNEL.COMM">
           <SectionLabel num="05" title="SECURE_CHANNEL" />
-          <h3 className="font-display text-2xl sm:text-4xl text-terminal-green-bright tracking-widest text-center mb-6">
-            ESTABLISH CONNECTION
-          </h3>
-          <div className="grid sm:grid-cols-3 gap-3 mb-4">
+
+          <div className="grid sm:grid-cols-3 gap-3 mb-6">
             {[
               { icon: Github, label: "GitHub", action: () => window.open("https://github.com/Abhiram-ops", "_blank"), cta: "VIEW REPOS" },
               { icon: Linkedin, label: "LinkedIn", action: () => window.open("https://www.linkedin.com/in/abhiram-lanka-1696a5306/", "_blank"), cta: "CONNECT" },
               { icon: Download, label: "Resume", action: handleDownloadResume, cta: "DOWNLOAD" },
             ].map((item, i) => (
-              <div key={i} className="p-4 sm:p-5 border border-terminal-green/22 rounded-lg text-center hover:border-terminal-green/55 hover:shadow-[0_0_20px_hsl(180_100%_50%/0.06)] transition-all duration-200 group">
-                <item.icon className="w-7 h-7 text-terminal-green-bright mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <h4 className="font-body font-semibold text-terminal-green-bright mb-2 text-xs uppercase tracking-wider">{item.label}</h4>
-                <button onClick={item.action}
-                  className="text-xs font-mono text-terminal-green/65 border border-terminal-green/28 px-3 py-1.5 hover:border-terminal-green hover:text-terminal-green-bright transition-all w-full">
-                  {item.cta}
-                </button>
+              <div key={i} className="p-3 sm:p-4 border border-terminal-green/22 rounded-lg text-center hover:border-terminal-green/50 hover:shadow-[0_0_16px_hsl(180_100%_50%/0.06)] transition-all duration-200 group">
+                <item.icon className="w-6 h-6 text-terminal-green-bright mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                <p className="text-xs font-mono text-terminal-green/45 mb-2 uppercase tracking-wider">{item.label}</p>
+                <button onClick={item.action} className="text-xs font-mono text-terminal-green/60 border border-terminal-green/25 px-3 py-1 hover:border-terminal-green hover:text-terminal-green-bright transition-all w-full">{item.cta}</button>
               </div>
             ))}
           </div>
-          <div className="p-3 border border-terminal-green/18 rounded-lg text-center">
-            <p className="text-xs font-mono text-terminal-green/60">
-              <a href="mailto:lankaabhiram16@gmail.com" className="hover:text-terminal-green-bright transition-colors">lankaabhiram16@gmail.com</a>
-              <span className="text-terminal-green/22 mx-3">·</span>
-              <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a>
-              <span className="text-terminal-green/22 mx-3">·</span>
-              Visakhapatnam, AP
+
+          {/* Contact Form */}
+          <div className="border border-terminal-green/25 rounded-lg p-4 sm:p-5" style={{ background: "rgba(0,255,255,0.02)" }}>
+            <p className="text-xs font-mono text-terminal-green/35 uppercase tracking-widest mb-4 flex items-center gap-2">
+              <Mail className="w-3.5 h-3.5" /> Send a message
             </p>
+
+            {formStatus === "sent" ? (
+              <div className="text-center py-8">
+                <div className="w-12 h-12 border-2 border-terminal-green rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-terminal-green-bright text-xl">✓</span>
+                </div>
+                <p className="text-terminal-green-bright font-mono text-sm mb-1">MESSAGE RECEIVED</p>
+                <p className="text-terminal-green/50 text-xs font-body">{"I'll"} get back to you soon.</p>
+                <button onClick={() => setFormStatus("idle")} className="mt-4 text-xs font-mono text-terminal-green/40 hover:text-terminal-green-bright transition-colors">
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-3">
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-mono text-terminal-green/40 uppercase tracking-widest block mb-1">Name *</label>
+                    <input type="text" required value={formData.name}
+                      onChange={e => setFormData(p => ({ ...p, name: e.target.value }))}
+                      placeholder="Your name"
+                      className="w-full px-3 py-2 text-sm font-body text-terminal-green-bright placeholder-terminal-green/25 border border-terminal-green/25 rounded focus:border-terminal-green focus:outline-none transition-colors"
+                      style={{ background: "rgba(0,255,255,0.04)" }} />
+                  </div>
+                  <div>
+                    <label className="text-xs font-mono text-terminal-green/40 uppercase tracking-widest block mb-1">Email *</label>
+                    <input type="email" required value={formData.email}
+                      onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+                      placeholder="your@email.com"
+                      className="w-full px-3 py-2 text-sm font-body text-terminal-green-bright placeholder-terminal-green/25 border border-terminal-green/25 rounded focus:border-terminal-green focus:outline-none transition-colors"
+                      style={{ background: "rgba(0,255,255,0.04)" }} />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-xs font-mono text-terminal-green/40 uppercase tracking-widest block mb-1">Phone</label>
+                  <input type="tel" value={formData.phone}
+                    onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
+                    placeholder="+91 XXXXX XXXXX"
+                    className="w-full px-3 py-2 text-sm font-body text-terminal-green-bright placeholder-terminal-green/25 border border-terminal-green/25 rounded focus:border-terminal-green focus:outline-none transition-colors"
+                    style={{ background: "rgba(0,255,255,0.04)" }} />
+                </div>
+                <div>
+                  <label className="text-xs font-mono text-terminal-green/40 uppercase tracking-widest block mb-1">Message *</label>
+                  <textarea required rows={4} value={formData.message}
+                    onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
+                    placeholder="What would you like to discuss?"
+                    className="w-full px-3 py-2 text-sm font-body text-terminal-green-bright placeholder-terminal-green/25 border border-terminal-green/25 rounded focus:border-terminal-green focus:outline-none transition-colors resize-none"
+                    style={{ background: "rgba(0,255,255,0.04)" }} />
+                </div>
+                {formStatus === "error" && (
+                  <p className="text-xs font-mono text-red-400">Something went wrong. Try emailing directly at lankaabhiram16@gmail.com</p>
+                )}
+                <button type="submit" disabled={formStatus === "sending"}
+                  className="w-full flex items-center justify-center gap-2 px-5 py-3 border border-terminal-green text-terminal-green-bright font-mono text-sm hover:bg-terminal-green/10 hover:shadow-[0_0_20px_hsl(180_100%_50%/0.25)] transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                  {formStatus === "sending" ? (
+                    <><span className="animate-pulse">SENDING...</span></>
+                  ) : (
+                    <><ArrowRight className="w-4 h-4" /> SEND MESSAGE</>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
+
+          <p className="text-center text-xs font-mono text-terminal-green/25 mt-4">
+            or reach directly · <a href="mailto:lankaabhiram16@gmail.com" className="hover:text-terminal-green-bright transition-colors">lankaabhiram16@gmail.com</a>
+            <span className="mx-2">·</span>
+            <a href="tel:9556925563" className="hover:text-terminal-green-bright transition-colors">9556925563</a>
+          </p>
         </TerminalWindow>
       </div>
     </section>
