@@ -2,62 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Cybersecurity Terminal Theme Design System */
-
 @layer base {
   :root {
-    /* Cybersecurity Blue-Green Theme */
     --background: 210 100% 3%;
     --foreground: 180 100% 70%;
-
     --card: 210 100% 6%;
     --card-foreground: 180 100% 70%;
-
     --popover: 210 100% 6%;
     --popover-foreground: 180 100% 70%;
-
-    /* Cyber cyan primary */
     --primary: 180 100% 50%;
     --primary-foreground: 210 100% 3%;
-
-    /* Darker cyan variant */
     --secondary: 180 100% 15%;
     --secondary-foreground: 180 100% 70%;
-
-    /* Muted cyber colors */
     --muted: 180 20% 10%;
     --muted-foreground: 180 30% 40%;
-
-    /* Accent bright cyan */
     --accent: 180 100% 60%;
     --accent-foreground: 210 100% 3%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    /* Cyber borders */
     --border: 180 50% 20%;
     --input: 180 50% 15%;
     --ring: 180 100% 50%;
-
     --radius: 0.25rem;
-
-    /* Custom cyber colors */
     --terminal-green: 180 100% 50%;
     --terminal-green-dark: 180 100% 25%;
     --terminal-green-bright: 180 100% 70%;
     --terminal-bg: 210 100% 3%;
     --terminal-bg-light: 210 100% 6%;
-    
-    /* Matrix effect - cyan */
-    --matrix-green: 180 100% 50%;
-    --matrix-green-fade: 180 100% 25%;
-    
-    /* Glitch effects - cyber colors */
-    --glitch-primary: 180 100% 50%;
-    --glitch-secondary: 200 100% 50%;
-    --glitch-tertiary: 160 100% 50%;
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -67,9 +38,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-
   .dark {
-    /* Cybersecurity Blue-Green Dark Theme */
     --background: 210 100% 3%;
     --foreground: 180 100% 70%;
     --card: 210 100% 6%;
@@ -101,100 +70,173 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans overflow-x-hidden;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-body overflow-x-hidden; }
 }
 
-/* Terminal-specific animations and effects */
-@layer utilities {
-  .matrix-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-  }
+/* ── Custom cursor ─────────────────────────────────────── */
+* { cursor: none !important; }
 
-  .terminal-window {
-    border: 1px solid hsl(var(--terminal-green));
-    background: hsl(var(--terminal-bg-light));
-    border-radius: var(--radius);
-    box-shadow: 0 0 20px hsl(var(--terminal-green) / 0.3);
-  }
-
-  .terminal-title-bar {
-    background: linear-gradient(90deg, hsl(var(--terminal-green-dark)), hsl(var(--terminal-green)));
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius) var(--radius) 0 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .terminal-dots {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .terminal-dot {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-  }
-
-  .terminal-dot.red {
-    background: #ff5f56;
-  }
-
-  .terminal-dot.yellow {
-    background: #ffbd2e;
-  }
-
-  .terminal-dot.green {
-    background: #27ca3f;
-  }
-
-  .glitch-text {
-    position: relative;
-    animation: glitch 2s infinite;
-  }
-
-  .typing-animation {
-    overflow: hidden;
-    border-right: 2px solid hsl(var(--terminal-green));
-    white-space: nowrap;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  }
-
-  .terminal-glow {
-    box-shadow: 0 0 10px hsl(var(--terminal-green) / 0.5);
-    border: 1px solid hsl(var(--terminal-green) / 0.3);
-  }
-
-  .skill-tag {
-    background: hsl(var(--terminal-bg-light));
-    border: 1px solid hsl(var(--terminal-green));
-    color: hsl(var(--terminal-green));
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius);
-    font-size: 0.875rem;
-    font-family: 'JetBrains Mono', monospace;
-    transition: all 0.3s ease;
-  }
-
-  .skill-tag:hover {
-    background: hsl(var(--terminal-green) / 0.1);
-    box-shadow: 0 0 5px hsl(var(--terminal-green) / 0.5);
-  }
+.cyber-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: hsl(var(--terminal-green-bright));
+  box-shadow: 0 0 10px hsl(var(--terminal-green)), 0 0 20px hsl(var(--terminal-green) / 0.6);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease, width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
+}
+.cyber-cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid hsl(var(--terminal-green) / 0.4);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, width 0.18s ease, height 0.18s ease;
 }
 
+/* ── Grain overlay ──────────────────────────────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ── Scanlines ──────────────────────────────────────────── */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 59;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+}
+
+/* ── Marquee ────────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Terminal window ────────────────────────────────────── */
+.terminal-window {
+  border: 1px solid hsl(var(--terminal-green));
+  background: hsl(var(--terminal-bg-light));
+  border-radius: var(--radius);
+  box-shadow: 0 0 20px hsl(var(--terminal-green) / 0.3);
+}
+.terminal-title-bar {
+  background: linear-gradient(90deg, hsl(var(--terminal-green-dark)), hsl(var(--terminal-green)));
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.terminal-dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; }
+.terminal-dot.red { background: #ff5f56; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #27ca3f; }
+
+/* ── Glitch text ────────────────────────────────────────── */
+.glitch-text {
+  position: relative;
+  animation: glitch 4s infinite;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.glitch-text:hover::before {
+  opacity: 0.6;
+  color: hsl(200 100% 50%);
+  clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+  transform: translateX(-2px);
+  animation: glitch 0.3s steps(2) infinite;
+}
+.glitch-text:hover::after {
+  opacity: 0.6;
+  color: hsl(160 100% 50%);
+  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+  transform: translateX(2px);
+  animation: glitch 0.4s steps(3) infinite;
+}
+
+/* ── Skill tag ──────────────────────────────────────────── */
+.skill-tag {
+  background: hsl(var(--terminal-bg-light));
+  border: 1px solid hsl(var(--terminal-green));
+  color: hsl(var(--terminal-green));
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
+}
+.skill-tag:hover {
+  background: hsl(var(--terminal-green) / 0.1);
+  box-shadow: 0 0 8px hsl(var(--terminal-green) / 0.5);
+}
+
+/* ── Reveal animation utility ───────────────────────────── */
+.reveal-item {
+  opacity: 0;
+  animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* ── Hover underline ────────────────────────────────────── */
+.story-link { position: relative; display: inline-block; }
+.story-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(var(--primary));
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+/* ── Scrollbar hide ─────────────────────────────────────── */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; ms-overflow-style: none; }
+
+/* ── Timeline dot pulse ─────────────────────────────────── */
+.timeline-dot-active {
+  box-shadow: 0 0 0 0 hsl(var(--terminal-green) / 0.4);
+  animation: timeline-ping 2s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+@keyframes timeline-ping {
+  75%, 100% { box-shadow: 0 0 0 8px hsl(var(--terminal-green) / 0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @keyframes glitch {
   0%, 100% { transform: translateX(0); }
   20% { transform: translateX(-2px); }
@@ -202,51 +244,11 @@
   60% { transform: translateX(-1px); }
   80% { transform: translateX(1px); }
 }
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
-
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50% { border-color: hsl(var(--terminal-green)); }
-}
-
-@keyframes matrix-fall {
-  0% { transform: translateY(-100vh); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-
-.story-link {
-  position: relative;
-  display: inline-block;
-}
-
-.story-link::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: hsl(var(--primary));
-  transform-origin: bottom right;
-  transition: transform 0.3s ease-out;
-}
-
-.story-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-.hover-scale {
-  transition: transform 0.2s ease-out;
-}
-
-.hover-scale:hover {
-  transform: scale(1.05);
 }
