@@ -1,8 +1,9 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
+import { FuturisticBackground } from "@/components/FuturisticBackground";
 import {
   Github, Download, Mail, Phone, MapPin, Shield, Code, Brain,
   Lock, Unlock, Award, Briefcase, Linkedin, FileText,
