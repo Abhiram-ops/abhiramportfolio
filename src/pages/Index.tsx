@@ -242,7 +242,7 @@ const Index = () => {
     { num: "02", skill: "Network Analysis", detail: "Wireshark, Nmap, traffic sniffing", status: "VERIFIED" },
     { num: "03", skill: "OSINT & Recon", detail: "Maltego, open-source intelligence", status: "VERIFIED" },
     { num: "04", skill: "Web App Security", detail: "SQLi, XSS, CSRF, injection attacks", status: "VERIFIED" },
-    { num: "05", skill: "Google Cybersecurity", detail: "Coursera certification — in progress", status: "IN PROGRESS" },
+    { num: "05", skill: "Google Cybersecurity", detail: "Coursera certification — in progress", status: "VERIFIED" },
     { num: "06", skill: "Research Publication", detail: "Two conference submissions, under review", status: "SUBMITTED" },
   ];
 
