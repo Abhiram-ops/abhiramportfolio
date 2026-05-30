@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 
 interface Particle {
   x: number; y: number;
@@ -140,7 +140,7 @@ export const FuturisticBackground = () => {
         width: "100%", height: "100%",
         pointerEvents: "none",
         zIndex: 1,
-        opacity: 0.75,
+        opacity: 0.45,
       }}
     />
   );

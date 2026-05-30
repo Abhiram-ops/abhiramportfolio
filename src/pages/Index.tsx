@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
@@ -56,10 +56,10 @@ const Index = () => {
   const [cursorBig, setCursorBig] = useState(false);
 
   const heroSubtitles = [
-    "Ethical Hacker. Security Researcher.",
+    "B.Tech CSE Graduate. Open to Opportunities.",
+    "Cybersecurity Professional. Ethical Hacker.",
     "Business Development Builder.",
     "Research Author. CityBus Live.",
-    "Final Year CSE. Andhra University.",
   ];
 
   useEffect(() => {
@@ -299,6 +299,14 @@ const Index = () => {
         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-terminal-green-bright" />
       </div>
 
+      {/* Open to work badge */}
+      <div className={`mb-4 ${heroRevealed ? R() : "opacity-0"}`} style={{ animationDelay: "0.38s" }}>
+        <span className="inline-flex items-center gap-2 px-3 py-1 border border-terminal-green/40 rounded-full text-xs font-mono text-terminal-green-bright bg-terminal-green/8">
+          <span className="w-1.5 h-1.5 rounded-full bg-terminal-green-bright animate-pulse" />
+          OPEN TO WORK · Cybersecurity · BD · Security Research
+        </span>
+      </div>
+
       {/* Cycling subtitle */}
       <div className={`h-6 mb-7 ${heroRevealed ? R() : "opacity-0"}`} style={{ animationDelay: "0.4s" }}>
         <p className="text-xs sm:text-sm font-mono text-terminal-green/55 tracking-[0.25em] uppercase">
@@ -312,7 +320,7 @@ const Index = () => {
           { to: 2, label: "Research Papers", suffix: "" },
           { to: 4, label: "Internship Roles", suffix: "+" },
           { to: 500, label: "Concurrent Users", suffix: "+" },
-          { to: 2026, label: "Graduating", suffix: "" },
+          { to: 2026, label: "Graduated", suffix: "" },
         ].map((s, i) => (
           <div key={i}>
             <div className="font-display text-3xl sm:text-5xl leading-none text-terminal-green-bright">
@@ -839,12 +847,11 @@ const Index = () => {
           </h1>
           <div className="w-full h-px mb-5 reveal-item" style={{ animationDelay: "0.62s", background: "linear-gradient(to right, hsl(180 100% 50% / 0.5), transparent)" }} />
           <p className="text-sm text-terminal-green/80 leading-relaxed mb-7 font-body reveal-item" style={{ animationDelay: "0.72s" }}>
-            Final-year B.Tech CSE at Andhra University, Visakhapatnam. Dual focus on
-            <span className="text-terminal-green-bright font-semibold"> Cybersecurity</span> and
+            I'm <span className="text-terminal-green-bright font-semibold">Abhiram Lanka</span> — a freshly graduated B.Tech CSE from Andhra University (2022-2026), and I'm actively looking for opportunities in
+            <span className="text-terminal-green-bright font-semibold"> Cybersecurity</span>,
+            <span className="text-terminal-green-bright font-semibold"> Security Research</span>, or
             <span className="text-terminal-green-bright font-semibold"> Business Development</span>.
-            Currently driving growth at OpenHire. Previously at Caarya and IIT Bhubaneswar.
-            Built <span className="text-terminal-green-bright font-semibold">CityBus Live</span> — deployed live on 4 Visakhapatnam routes, with research papers submitted to ASIANCON 2026 and ICST 2026.
-            Cybersecurity Chapter Lead at codeIAM Club. Builder of tools that make systems work better.
+            I've spent the last two years building on both fronts — technically, I built CityBus Live (deployed live, 500+ users, 2 research papers under review) and tools like Cybersweep for automated pentesting. On the business side, I drove 35% conversion rates and 50% onboarding uplift at Caarya and OpenHire. I don't fit neatly into one box — and that's the point.
           </p>
           <div className="reveal-item" style={{ animationDelay: "0.88s" }}>
             <div className="flex justify-between text-xs font-mono mb-1.5">

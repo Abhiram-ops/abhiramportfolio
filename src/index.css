@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -102,20 +102,20 @@
 .orb-1 {
   width: 500px; height: 500px;
   top: -10%; left: -8%;
-  background: radial-gradient(circle, rgba(0,255,200,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,255,200,0.04) 0%, transparent 70%);
   animation: orb-drift 12s ease-in-out infinite;
 }
 .orb-2 {
   width: 380px; height: 380px;
   bottom: 10%; right: 5%;
-  background: radial-gradient(circle, rgba(0,100,255,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,100,255,0.04) 0%, transparent 70%);
   animation: orb-drift 18s ease-in-out infinite reverse;
   animation-delay: -5s;
 }
 .orb-3 {
   width: 280px; height: 280px;
   top: 40%; left: 55%;
-  background: radial-gradient(circle, rgba(0,220,180,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,220,180,0.03) 0%, transparent 70%);
   animation: orb-drift 15s ease-in-out infinite;
   animation-delay: -8s;
 }
@@ -218,7 +218,7 @@
 /* ── Terminal window ────────────────────────────────────── */
 .terminal-window {
   border: 1px solid hsl(var(--terminal-green) / 0.5);
-  background: rgba(2, 12, 22, 0.85);
+  background: rgba(2, 10, 18, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius);
