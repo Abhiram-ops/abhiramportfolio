@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MatrixBackground } from "@/components/MatrixBackground";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { SkillTag } from "@/components/SkillTag";
 import { CyberSidebar } from "@/components/CyberSidebar";
@@ -721,7 +720,7 @@ const Index = () => {
     return (
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center">
         <div className="cyber-cursor" style={{ left: cursor.x, top: cursor.y, width: cursorBig ? 16 : 10, height: cursorBig ? 16 : 10 }} />
-        <MatrixBackground />
+        <FuturisticBackground />
         <div className="grain-overlay" /><div className="scanlines" />
         <div className="relative z-10 text-center max-w-md mx-auto px-4">
           <div className="bg-terminal-bg-light border-2 border-terminal-green rounded-lg p-6 md:p-8 shadow-[0_0_40px_hsl(180_100%_50%/0.2)]">
@@ -746,7 +745,7 @@ const Index = () => {
   if (isAnimating) {
     return (
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
-        <MatrixBackground />
+        <FuturisticBackground />
         <div className="grain-overlay" /><div className="scanlines" />
         <div className="relative z-10 text-center max-w-2xl px-4">
           <div className="w-48 h-48 mx-auto relative mb-8">
@@ -771,7 +770,7 @@ const Index = () => {
   if (showGreeting) {
     return (
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
-        <MatrixBackground />
+        <FuturisticBackground />
         <div className="grain-overlay" /><div className="scanlines" />
         <div className="relative z-10 max-w-2xl mx-auto px-6 w-full font-mono">
           <p className="text-terminal-green-bright text-sm mb-1 reveal-item" style={{ animationDelay: "0.1s" }}>» ACCESS GRANTED | CLEARANCE: ADMIN</p>
@@ -807,7 +806,13 @@ const Index = () => {
 
   /* ── Main portfolio render ──────────────────────────────── */
   return (
-    <div className="min-h-screen flex w-full bg-terminal-bg">
+    <div className="min-h-screen flex w-full" style={{ background: "transparent" }}>
+      <div className="space-bg" />
+      <div className="stars" />
+      <div className="hex-grid" />
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="orb orb-1" /><div className="orb orb-2" /><div className="orb orb-3" /><div className="orb orb-4" />
+      </div>
       {/* Custom cursor */}
       <div className="cyber-cursor" style={{ left: cursor.x, top: cursor.y, width: cursorBig ? 18 : 10, height: cursorBig ? 18 : 10 }} />
       <div className="cyber-cursor-ring" style={{ left: cursor.x, top: cursor.y, width: cursorBig ? 48 : 32, height: cursorBig ? 48 : 32 }} />
@@ -815,7 +820,7 @@ const Index = () => {
       {/* Overlays */}
       <div className="grain-overlay" />
       <div className="scanlines" />
-      <div style={{ pointerEvents: "none" }}><MatrixBackground /></div>
+      <FuturisticBackground />
 
       <CyberSidebar
         activeSection={activeSection}
@@ -825,7 +830,7 @@ const Index = () => {
       />
       <main className="flex-1 relative">
         <div className="fixed inset-0 z-5" style={{ opacity: 0.35, pointerEvents: "none" }}>
-          <MatrixBackground />
+          <FuturisticBackground />
         </div>
         {renderActiveSection()}
       </main>
