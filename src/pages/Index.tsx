@@ -7,7 +7,7 @@ import { FuturisticBackground } from "@/components/FuturisticBackground";
 import {
   Github, Download, Mail, Phone, MapPin, Shield, Code, Brain,
   Lock, Unlock, Award, Briefcase, Linkedin, FileText,
-  ChevronDown, ChevronUp, ExternalLink, Zap, ArrowRight
+  ChevronDown, ChevronUp, ExternalLink, Zap, ArrowRight, Menu
 } from "lucide-react";
 
 /* ── CountUp sub-component ─────────────────────────────── */
@@ -237,7 +237,7 @@ const Index = () => {
 
   /* ── Hero section ──────────────────────────────────────── */
   const renderHero = () => (
-    <section className="min-h-screen flex flex-col justify-center px-6 sm:px-12 lg:px-16 relative z-10 overflow-hidden" onScroll={handleScroll}>
+    <section className="min-h-screen flex flex-col justify-center px-5 sm:px-12 lg:px-16 relative z-10 overflow-hidden pt-16 sm:pt-0" onScroll={handleScroll}>
 
       {/* Status badge */}
       <div className={heroRevealed ? R("") : "opacity-0"} style={{ animationDelay: "0.05s" }}>
@@ -255,13 +255,13 @@ const Index = () => {
         <h1
           className={`font-display leading-none tracking-wide glitch-text ${heroRevealed ? R("") : "opacity-0"}`}
           data-text="ABHIRAM"
-          style={{ fontSize: "clamp(4rem, 14vw, 15rem)", animationDelay: "0.15s", textShadow: "0 0 40px hsl(180 100% 50% / 0.5), 0 0 80px hsl(180 100% 50% / 0.25)" }}
+          style={{ fontSize: "clamp(3.2rem, 14vw, 15rem)", animationDelay: "0.15s", textShadow: "0 0 40px hsl(180 100% 50% / 0.5), 0 0 80px hsl(180 100% 50% / 0.25)" }}
         >
           ABHIRAM
         </h1>
         <h1
           className={`font-display leading-none tracking-wide ${heroRevealed ? R("") : "opacity-0"}`}
-          style={{ fontSize: "clamp(4rem, 14vw, 15rem)", animationDelay: "0.25s", color: "hsl(180 100% 50% / 0.18)", WebkitTextStroke: "1px hsl(180 100% 50% / 0.3)" }}
+          style={{ fontSize: "clamp(3.2rem, 14vw, 15rem)", animationDelay: "0.25s", color: "hsl(180 100% 50% / 0.18)", WebkitTextStroke: "1px hsl(180 100% 50% / 0.3)" }}
         >
           LANKA
         </h1>
@@ -289,7 +289,7 @@ const Index = () => {
           { to: 2026, label: "Graduating", suffix: "" },
         ].map((s, i) => (
           <div key={i} className="group">
-            <div className="font-display text-4xl sm:text-6xl leading-none text-terminal-green-bright group-hover:animate-[glow-pulse_1s_ease-in-out_infinite] transition-all">
+            <div className="font-display text-3xl sm:text-5xl leading-none text-terminal-green-bright group-hover:animate-[glow-pulse_1s_ease-in-out_infinite] transition-all">
               {heroRevealed ? <CountUp to={s.to} /> : 0}{s.suffix}
             </div>
             <div className="text-xs font-mono text-terminal-green/40 mt-1 uppercase tracking-widest">{s.label}</div>
@@ -317,7 +317,7 @@ const Index = () => {
       </div>
 
       {/* Skill marquee strip */}
-      <div className={`border-t border-b border-terminal-green/15 py-2.5 overflow-hidden -mx-6 sm:-mx-12 lg:-mx-16 px-0 ${heroRevealed ? R("") : "opacity-0"}`} style={{ animationDelay: "0.8s" }}>
+      <div className={`border-t border-b border-terminal-green/15 py-2.5 overflow-hidden -mx-5 sm:-mx-12 lg:-mx-16 px-0 ${heroRevealed ? R("") : "opacity-0"}`} style={{ animationDelay: "0.8s" }}>
         <div className="marquee-track gap-0">
           {[...allSkillsMarquee, ...allSkillsMarquee].map((s, i) => (
             <span key={i} className="flex items-center gap-0 text-xs font-mono text-terminal-green/50 uppercase tracking-[0.2em] px-4 whitespace-nowrap">
@@ -334,7 +334,7 @@ const Index = () => {
 
   /* ── Skills section ────────────────────────────────────── */
   const renderSkills = () => (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
+    <section className="min-h-screen flex items-center justify-center px-3 sm:px-8 overflow-y-auto relative z-10 pb-8" onScroll={handleScroll}>
       <div className="max-w-5xl mx-auto w-full animate-fade-in">
         <TerminalWindow title="SKILL_MATRIX.SYS" className="mb-6">
 
@@ -347,7 +347,7 @@ const Index = () => {
               {skillLevels.map((skill, i) => (
                 <div key={skill.name}>
                   <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-xs font-body text-terminal-green/75">{skill.name}</span>
+                    <span className="text-xs font-body text-terminal-green/75 leading-tight">{skill.name}</span>
                     <span className="text-xs font-mono font-bold tabular-nums" style={{ color: skill.color }}>
                       {skillsAnimated ? `${skill.level}%` : "0%"}
                     </span>
@@ -409,7 +409,7 @@ const Index = () => {
 
   /* ── Experience section — timeline layout ──────────────── */
   const renderExperience = () => (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
+    <section className="min-h-screen flex items-center justify-center px-3 sm:px-8 overflow-y-auto relative z-10 pt-14 sm:pt-0 pb-8" onScroll={handleScroll}>
       <div className="max-w-3xl mx-auto w-full animate-fade-in">
         <TerminalWindow title="MISSION_LOG.EXP" className="mb-6">
           <div className="relative">
@@ -578,7 +578,7 @@ const Index = () => {
 
   /* ── Assessment & Contact sections ────────────────────── */
   const renderAssessment = () => (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
+    <section className="min-h-screen flex items-center justify-center px-3 sm:px-8 overflow-y-auto relative z-10 pt-14 sm:pt-0 pb-8" onScroll={handleScroll}>
       <div className="max-w-4xl mx-auto w-full animate-fade-in">
         <TerminalWindow title="THREAT_ASSESSMENT.FINAL" className="mb-6">
           <div className="space-y-6">
@@ -664,7 +664,7 @@ const Index = () => {
   );
 
   const renderContact = () => (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 overflow-y-auto relative z-10" onScroll={handleScroll}>
+    <section className="min-h-screen flex items-center justify-center px-3 sm:px-8 overflow-y-auto relative z-10 pt-14 sm:pt-0 pb-8" onScroll={handleScroll}>
       <div className="max-w-3xl mx-auto w-full animate-fade-in">
         <TerminalWindow title="SECURE_CHANNEL.COMM" className="mb-6">
           <div className="space-y-5">
@@ -729,7 +729,7 @@ const Index = () => {
               <div className="w-20 h-20 mx-auto mb-4 border-2 border-terminal-green rounded-full flex items-center justify-center shadow-[0_0_20px_hsl(180_100%_50%/0.3)]">
                 <Lock className="w-8 h-8 text-terminal-green-bright animate-pulse" />
               </div>
-              <h1 className="font-display text-3xl text-terminal-green-bright mb-2">CLASSIFIED ACCESS</h1>
+              <h1 className="font-display text-2xl sm:text-3xl text-terminal-green-bright mb-2">CLASSIFIED ACCESS</h1>
               <p className="text-terminal-green/60 text-sm font-mono">Security credentials required</p>
             </div>
             <p className="text-xs font-mono text-terminal-green/40 mb-6">Click the lock to access ABHIRAM's portfolio</p>
@@ -773,10 +773,10 @@ const Index = () => {
       <div className="min-h-screen bg-terminal-bg text-terminal-green relative flex items-center justify-center overflow-hidden">
         <FuturisticBackground />
         <div className="grain-overlay" /><div className="scanlines" />
-        <div className="relative z-10 max-w-2xl mx-auto px-6 w-full font-mono">
+        <div className="relative z-10 max-w-2xl mx-auto px-5 sm:px-6 w-full font-mono pt-6 sm:pt-0">
           <p className="text-terminal-green-bright text-sm mb-1 reveal-item" style={{ animationDelay: "0.1s" }}>» ACCESS GRANTED | CLEARANCE: ADMIN</p>
           <p className="text-terminal-green/50 text-sm mb-8 reveal-item" style={{ animationDelay: "0.3s" }}>» WELCOME, OPERATOR. IDENTITY CONFIRMED.</p>
-          <h1 className="font-display text-5xl sm:text-7xl text-terminal-green-bright mb-3 reveal-item" style={{ animationDelay: "0.5s", textShadow: "0 0 40px hsl(180 100% 50% / 0.4)" }}>
+          <h1 className="font-display text-4xl sm:text-7xl text-terminal-green-bright mb-3 reveal-item" style={{ animationDelay: "0.5s", textShadow: "0 0 40px hsl(180 100% 50% / 0.4)" }}>
             ABHIRAM LANKA
           </h1>
           <div className="w-full h-px bg-terminal-green/25 mb-6 reveal-item" style={{ animationDelay: "0.65s" }} />
@@ -822,6 +822,17 @@ const Index = () => {
       <div className="grain-overlay" />
       <div className="scanlines" />
       <FuturisticBackground />
+
+      {/* Mobile hamburger — visible only on small screens */}
+      <button
+        className="fixed top-4 right-4 z-[200] sm:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 border border-terminal-green/50 bg-black/60 backdrop-blur-sm rounded"
+        onClick={() => setShowSidebar(true)}
+        aria-label="Open navigation"
+      >
+        <span className="w-5 h-px bg-terminal-green-bright block" />
+        <span className="w-5 h-px bg-terminal-green-bright block" />
+        <span className="w-3 h-px bg-terminal-green-bright block" />
+      </button>
 
       <CyberSidebar
         activeSection={activeSection}

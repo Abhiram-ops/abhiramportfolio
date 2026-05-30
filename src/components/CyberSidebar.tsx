@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Shield, Code, Target, Download, Github, Terminal, Lock, Eye, FileText, X, ChevronRight } from "lucide-react";
 
 interface CyberSidebarProps {
@@ -64,7 +64,7 @@ export function CyberSidebar({ activeSection, onSectionChange, isOpen, onOpenCha
     <>
       {/* Hover trigger strip */}
       <div
-        className="fixed left-0 top-0 h-full w-3 z-40 cursor-pointer"
+        className="fixed left-0 top-0 h-full w-3 z-[140] cursor-pointer hidden sm:block"
         style={{ background: "linear-gradient(to right, rgba(0,255,65,0.18), transparent)" }}
         onMouseEnter={() => setHovering(true)}
       />
@@ -72,7 +72,7 @@ export function CyberSidebar({ activeSection, onSectionChange, isOpen, onOpenCha
       {/* Chevron tab when closed */}
       {!shouldShow && (
         <div
-          className="fixed left-0 top-1/2 -translate-y-1/2 z-40 cursor-pointer"
+          className="fixed left-0 top-1/2 -translate-y-1/2 z-[140] cursor-pointer hidden sm:block"
           onMouseEnter={() => setHovering(true)}
         >
           <div className="bg-terminal-bg border-r border-t border-b border-terminal-green/40 rounded-r-md px-1 py-3 hover:bg-terminal-green/10 transition-colors">
@@ -83,14 +83,15 @@ export function CyberSidebar({ activeSection, onSectionChange, isOpen, onOpenCha
 
       {/* Backdrop */}
       {shouldShow && (
-        <div className="fixed inset-0 z-40 bg-black/20" onClick={handleClose} />
+        <div className="fixed inset-0 z-[140] bg-black/50 sm:bg-black/20" onClick={handleClose} />
       )}
 
       {/* Sidebar panel */}
       <div
-        className={`fixed left-0 top-0 h-full w-72 z-50 bg-terminal-bg border-r border-terminal-green/30 flex flex-col
+        className={`fixed left-0 top-0 h-full w-full sm:w-72 z-[150] flex flex-col
           transition-transform duration-300 ease-in-out
           ${shouldShow ? "translate-x-0" : "-translate-x-full"}`}
+        style={{ background: "rgba(2,10,18,0.97)", backdropFilter: "blur(16px)", borderRight: "1px solid hsl(180 100% 50% / 0.3)" }}
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
       >
