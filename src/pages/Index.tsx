@@ -62,6 +62,7 @@ const Index = () => {
     "Cybersecurity Professional. Ethical Hacker.",
     "Business Development Builder.",
     "Research Author. CityBus Live.",
+    "Open-Source Security Tool Author. AgentSentry.",
   ];
 
   useEffect(() => {
@@ -178,6 +179,17 @@ const Index = () => {
   ];
 
   const featuredProjects = [
+    {
+      title: "AgentSentry", subtitle: "NHI & AI Agent Security Auditor",
+      problem: "AI agents and cloud automation create thousands of Non-Human Identities (service accounts, API keys, IAM roles) that nobody audits — each one a potential lateral-movement path for attackers.",
+      fix: "Open-source CLI that scans AWS, Azure, GCP, GitHub, and Kubernetes for NHIs, builds a blast-radius attack graph, and enriches findings with CISA KEV live exploit data.",
+      description: "Published on PyPI as nhi-audit. Scores every NHI 0–100, maps access edges between identities and resources, flags zombie credentials, and generates HTML threat reports. AGPL-3.0.",
+      impact: "CRITICAL", tag: "Open Source · PyPI",
+      tech: "Python · NetworkX · boto3 · Rich · Pydantic · CISA KEV API",
+      metrics: ["5 cloud providers", "Blast-radius attack graph", "CISA KEV enrichment", "pip install nhi-audit"],
+      github: "https://github.com/Abhiram-ops/agent-sentry",
+      live: "https://agentsentry.tool",
+    },
     {
       title: "CityBus Live", subtitle: "Real-Time Urban Bus Tracking",
       problem: "City buses run blind. No live tracking, no ETAs, and dedicated GPS hardware costs 15,000 per vehicle — an impossible ask for public transit operators.",
