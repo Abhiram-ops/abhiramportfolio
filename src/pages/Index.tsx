@@ -181,11 +181,11 @@ const Index = () => {
   const featuredProjects = [
     {
       title: "AgentSentry", subtitle: "NHI & AI Agent Security Auditor",
-      problem: "AI agents and cloud automation create thousands of Non-Human Identities (service accounts, API keys, IAM roles) that nobody audits — each one a potential lateral-movement path for attackers.",
-      fix: "Open-source CLI that scans AWS, Azure, GCP, GitHub, and Kubernetes for NHIs, builds a blast-radius attack graph, and enriches findings with CISA KEV live exploit data.",
-      description: "Published on PyPI as nhi-audit. Scores every NHI 0–100, maps access edges between identities and resources, flags zombie credentials, and generates HTML threat reports. AGPL-3.0.",
+      problem: "Cloud environments accumulate thousands of Non-Human Identities — service accounts, API keys, IAM roles — that nobody audits. Each one is a potential lateral-movement path for attackers, and existing tools don't cover AI agents at all.",
+      fix: "Give security teams a single command to map the entire blast radius before an attacker does — scanning 5 cloud providers, building an attack graph, and enriching every finding with CISA KEV live exploit data.",
+      description: "Open-source CLI published on PyPI as nhi-audit (pip install nhi-audit). AGPL-3.0. Live at agentsentry.tool.",
       impact: "CRITICAL", tag: "Open Source · PyPI",
-      tech: "Python · NetworkX · boto3 · Rich · Pydantic · CISA KEV API",
+      tech: "Python · NetworkX · boto3 · Rich · Pydantic · Click · CISA KEV API · Jinja2",
       metrics: ["5 cloud providers", "Blast-radius attack graph", "CISA KEV enrichment", "pip install nhi-audit"],
       github: "https://github.com/Abhiram-ops/agent-sentry",
       live: "https://agentsentry.tool",
